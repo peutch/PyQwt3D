@@ -4,7 +4,7 @@
 
 import sys
 import PyQt4.Qt as Qt
-from PyQt4.Qwt3D import *
+from PyQt4.Qwt3D._Qwt3D import *
 from PyQt4.Qwt3D.OpenGL import *
 
 # enable all tracing options of the SIP generated bindings (requires -r option)

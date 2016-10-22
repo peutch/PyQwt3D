@@ -3,7 +3,7 @@
 import sys
 from PyQt4.Qt import QApplication, QCoreApplication, QFont, QFontDatabase
 from PyQt4.Qt import QSplitter, QTimer, SIGNAL, Qt
-from PyQt4.Qwt3D import *
+from PyQt4.Qwt3D._Qwt3D import *
 
 
 class Saddle(Function):

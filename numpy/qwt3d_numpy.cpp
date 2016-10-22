@@ -27,9 +27,18 @@
 #include <qwt3d_numpy.h>
 
 
-void qwt3d_import_numpy() {
-    import_array();
-}
+#if PY_MAJOR_VERSION >= 3
+    int qwt3d_import_numpy() {
+        // this is a function which does error handling
+        import_array();
+        return 0;
+    }
+#else
+    void qwt3d_import_numpy() {
+        // this is a function which does error handling
+        import_array();
+    }
+#endif
 
 
 int try_PyObject_to_NumPyArrayContiguousFloat2D(

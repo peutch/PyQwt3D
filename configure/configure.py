@@ -54,9 +54,9 @@ try:
     required = 'At least SIP-4.5 and its development tools are required.'
     import sipconfig
 except ImportError:
-    raise Die, required
+    raise Die(required)
 if 0x040500 > sipconfig._pkg_config['sip_version']:
-    raise Die, required
+    raise Die(required)
 del required
 
 
@@ -72,9 +72,9 @@ def get_pyqt_configuration(options):
         try:
             import pyqtconfig as pyqtconfig
         except ImportError:
-            raise Die, required
+            raise Die(required)
         if 0x031100 > pyqtconfig._pkg_config['pyqt_version']:
-            raise Die, required
+            raise Die(required)
     elif options.qt == 4:
         required = 'At least PyQt-4.1 and its development tools are required.'
         options.qwt3d = 'Qwt3D_Qt4'
@@ -83,16 +83,16 @@ def get_pyqt_configuration(options):
         try:
             import PyQt4.pyqtconfig as pyqtconfig
         except ImportError:
-            raise Die, required
+            raise Die(required)
         if 0x040100 > pyqtconfig._pkg_config['pyqt_version']:
-            raise Die, required
+            raise Die(required)
 
     options.subdirs.extend([options.qwt3d, options.opengl])
 
     try:
         configuration = pyqtconfig.Configuration()
     except AttributeError:
-        raise Die, (
+        raise Die(
             'Check if SIP and PyQt or PyQt4 have been installed properly.'
             )
 
@@ -207,20 +207,20 @@ def check_numarray(configuration, options, package):
         numarray_inc = os.path.join(
             configuration.py_inc_dir, 'numarray', 'arrayobject.h')
         if os.access(numarray_inc, os.F_OK):
-            print 'Found numarray-%s.\n' % numarray.__version__
+            print('Found numarray-%s.\n' % numarray.__version__)
             options.extra_defines.append('HAS_NUMARRAY')
         else:
-            print ('numarray has been installed, '
+            print(('numarray has been installed, '
                    'but its headers are not in the standard location.\n'
                    '%s will be build without support for numarray.\n'
                    '(Linux users may have to install a development package)\n'
-                   ) % (package,)
+                   ) % (package,))
             raise ImportError
     except ImportError:
         options.excluded_features.append('-x HAS_NUMARRAY')
-        print ('Failed to import numarray: '
+        print(('Failed to import numarray: '
                '%s will be build without support for numarray.\n'
-               ) % (package,)
+               ) % (package,))
 
     return options
 
@@ -241,20 +241,20 @@ def check_numeric(configuration, options, package):
         numeric_inc = os.path.join(
             configuration.py_inc_dir, 'Numeric', 'arrayobject.h')
         if os.access(numeric_inc, os.F_OK):
-            print 'Found Numeric-%s.\n' % Numeric.__version__
+            print('Found Numeric-%s.\n' % Numeric.__version__)
             options.extra_defines.append('HAS_NUMERIC')
         else:
-            print ('Numeric has been installed, '
+            print(('Numeric has been installed, '
                    'but its headers are not in the standard location.\n'
                    '%s will be build without support for Numeric.\n'
                    '(Linux users may have to install a development package)\n'
-                   ) % (package,)
+                   ) % (package,))
             raise ImportError
     except ImportError:
         options.excluded_features.append('-x HAS_NUMERIC')
-        print ('Failed to find Numeric: '
+        print(('Failed to find Numeric: '
                '%s will be build without support for Numeric.\n'
-               ) % (package,)
+               ) % (package,))
 
     return options
 
@@ -280,20 +280,20 @@ def check_numpy(configuration, options, package):
             if os.access(header, os.F_OK):
                 break
         else:
-            print ('NumPy has been installed, '
+            print(('NumPy has been installed, '
                    'but its headers are not in the standard location.\n'
                    '%s will be build without support for NumPy.\n'
                    '(Linux users may have to install a development package)\n'
-                   ) % (package,)
+                   ) % (package,))
             raise ImportError
-        print 'Found NumPy-%s.\n' % numpy.__version__
+        print('Found NumPy-%s.\n' % numpy.__version__)
         options.extra_defines.append('HAS_NUMPY')
         options.extra_include_dirs.extend(include_dirs)
     except ImportError:
         options.excluded_features.append('-x HAS_NUMPY')
-        print ('Failed to find NumPy: '
+        print(('Failed to find NumPy: '
                '%s will be build without support for NumPy.\n'
-               ) % (package,)
+               ) % (package,))
 
     return options
 
@@ -307,10 +307,10 @@ def check_sip(configuration, options, package):
     version_str = configuration.sip_version_str
     required = '%s requires at least SIP-4.5' % (package,)
     
-    print "Found SIP-%s.\n" % version_str
+    print("Found SIP-%s.\n" % version_str)
 
     if 0x040500 > version:
-        raise SystemExit, required
+        raise SystemExit(required)
 
     options.extra_include_dirs.append(configuration.sip_inc_dir)
 
@@ -322,7 +322,7 @@ def check_sip(configuration, options, package):
 def check_compiler(configuration, options, package):
     """Check compiler specifics
     """
-    print 'Do not get upset by error messages in the next 3 compiler checks:'
+    print('Do not get upset by error messages in the next 3 compiler checks:')
 
     makefile = sipconfig.Makefile(configuration=configuration)
     generator = makefile.optional_string('MAKEFILE_GENERATOR', 'UNIX')
@@ -346,12 +346,12 @@ def check_compiler(configuration, options, package):
 
     for ctype in ('unsigned int', 'unsigned long', 'unsigned long long'):
         open(name, "w").write(program % ctype)
-        print "Check if 'size_t' and '%s' are the same type:" % ctype
+        print("Check if 'size_t' and '%s' are the same type:" % ctype)
         if compile_qt_program(name, configuration):
             comment = ''
-            print "YES"
+            print("YES")
         else:
-            print "NO"
+            print("NO")
             comment =  '// '
         new.append('%stypedef %s size_t;' % (comment, ctype))
 
@@ -380,9 +380,9 @@ def check_compiler(configuration, options, package):
 def check_os(configuration, options, package):
     """Adapt to different operating systems
     """
-    print "Found '%s' operating system:" % os.name
-    print sys.version
-    print
+    print("Found '%s' operating system:" % os.name)
+    print(sys.version)
+    print()
 
     if os.name == 'nt':
         options.extra_defines.append('WIN32')
@@ -408,10 +408,9 @@ def fix_build_file(name, extra_sources, extra_headers, extra_moc_headers):
         if line[0] != '#':
             eq = line.find('=')
             if eq == -1:
-                raise SystemExit, (
+                raise SystemExit(
                     '"%s\" line %d: Line must be in the form '
-                    '"key = value value...."' % (name, nr)
-                    )
+                    '"key = value value...."' % (name, nr))
         key = line[:eq].strip()
         value = line[eq+1:].strip()
         if key in keys:
@@ -426,7 +425,7 @@ def fix_build_file(name, extra_sources, extra_headers, extra_moc_headers):
     output = open(name, 'w')
     for key in keys:
         if sbf[key]:
-            print >> output, '%s = %s' % (key, ' '.join(sbf[key]))
+            output.write('%s = %s\n' % (key, ' '.join(sbf[key])))#, file=output)
 
 # fix_build_file()
 
@@ -435,7 +434,7 @@ def setup_opengl_build(configuration, options, package):
     """Setup the OpenGL extension build
     """
 
-    print 'Setup the OpenGL package build.'
+    print('Setup the OpenGL package build.')
     
     build_dir = options.opengl
     tmp_dir = 'tmp-' + build_dir
@@ -450,7 +449,7 @@ def setup_opengl_build(configuration, options, package):
     try:
         os.mkdir(tmp_dir)
     except:
-        raise Die, 'Failed to create the temporary build directory.'
+        raise Die('Failed to create the temporary build directory.')
 
     if options.qt == 3:
         pyqt_sip_flags = configuration.pyqt_qt_sip_flags
@@ -473,29 +472,29 @@ def setup_opengl_build(configuration, options, package):
         + [sipfile.replace('\\', '/')]
         )
 
-    print 'sip invokation:'
+    print('sip invokation:')
     pprint.pprint(cmd)
     if os.path.exists(build_file):
         os.remove(build_file)
     os.system(cmd)
     if not os.path.exists(build_file):
-        raise Die, 'SIP failed to generate the C++ code.'
+        raise Die('SIP failed to generate the C++ code.')
 
     # copy lazily to the build directory to speed up recompilation
     if not os.path.exists(build_dir):
         try:
             os.mkdir(build_dir)
         except:
-            raise Die, 'Failed to create the build directory.'
+            raise Die('Failed to create the build directory.')
 
     lazy_copies = 0
     for pattern in ('*.c', '*.cpp', '*.h', '*.py', '*.sbf'):
         for source in glob.glob(os.path.join(tmp_dir, pattern)):
             target = os.path.join(build_dir, os.path.basename(source))
             if lazy_copy_file(source, target):
-                print 'Copy %s -> %s.' % (source, target)
+                print('Copy %s -> %s.' % (source, target))
                 lazy_copies += 1
-    print '%s file(s) lazily copied.' % lazy_copies
+    print('%s file(s) lazily copied.' % lazy_copies)
 
     # module makefile
     if options.qt == 3:
@@ -561,7 +560,7 @@ def setup_qwt3d_build(configuration, options, package):
     """Setup the Qwt3D extension build
     """
 
-    print 'Setup the Qwt3D package build.'
+    print('Setup the Qwt3D package build.')
 
     # initialize
     build_dir = options.qwt3d
@@ -579,21 +578,22 @@ def setup_qwt3d_build(configuration, options, package):
             os.path.join(os.pardir, 'qt4lib', 'PyQt4', 'Qwt3D', '*.py'))
 
     # do we compile and link the sources of QwtPlot3D into PyQwt3D?
+
     if options.qwtplot3d_sources:
         # yes, zap all 'qwtplot3d'
         while options.extra_libs.count('qwtplot3d'):
             options.extra_libs.remove('qwtplot3d')
-    elif 'qwtplot3d' not in options.extra_libs:
-        # no, add 'qwtplot3d' if needed
-        options.extra_libs.append('qwtplot3d')
+    #elif ('qwtplot3d' not in options.extra_libs: Must be added manually. libqwtplot3d or libqwtplot3d-qt4 is ok
+    #   no, add 'qwtplot3d' if needed
+    #    options.extra_libs.append('qwtplot3d')
 
     # do we also compile and link the sources of zlib into PyQwt3D?
     if options.zlib_sources:
         options.extra_defines.append('HAVE_ZLIB')
 
-    print "Extended options:"
+    print("Extended options:")
     pprint.pprint(options.__dict__)
-    print
+    print()
     
     # do we compile and link the sources of QwtPlot3D statically into PyQwt3D?
     if options.qwtplot3d_sources:
@@ -635,7 +635,7 @@ def setup_qwt3d_build(configuration, options, package):
     try:
         os.mkdir(tmp_dir)
     except:
-        raise SystemExit, "Failed to create the temporary build directory"
+        raise SystemExit("Failed to create the temporary build directory")
 
     # copy the extra files
     copy_files(extra_sources, tmp_dir)
@@ -678,15 +678,15 @@ def setup_qwt3d_build(configuration, options, package):
         + [sipfile.replace("\\", "/")]
         )
 
-    print "sip invokation:"
+    print("sip invokation:")
     pprint.pprint(cmd)
-    print
+    print()
 
     if os.path.exists(build_file):
         os.remove(build_file)
     os.system(cmd)
     if not os.path.exists(build_file):
-        raise SystemExit, 'SIP failed to generate the C++ code.'
+        raise SystemExit('SIP failed to generate the C++ code.')
 
     # FIXME: sip-4.7 does not generate those include files anymore
     for name in [os.path.join(tmp_dir, name) for name in [
@@ -721,16 +721,16 @@ def setup_qwt3d_build(configuration, options, package):
         try:
             os.mkdir(build_dir)
         except:
-            raise SystemExit, "Failed to create the build directory"
+            raise SystemExit("Failed to create the build directory")
 
     lazy_copies = 0
     for pattern in ('*.c', '*.cpp', '*.h', '*.py', '*.sbf'):
         for source in glob.glob(os.path.join(tmp_dir, pattern)):
             target = os.path.join(build_dir, os.path.basename(source))
             if lazy_copy_file(source, target):
-                print "Copy %s -> %s." % (source, target)
+                print("Copy %s -> %s." % (source, target))
                 lazy_copies += 1
-    print "%s file(s) lazily copied." % lazy_copies
+    print("%s file(s) lazily copied." % lazy_copies)
 
     # byte-compile the Python files
     compileall.compile_dir(build_dir, 1, options.module_install_path)
@@ -793,7 +793,7 @@ def setup_qwt3d_build(configuration, options, package):
 def setup_parent_build(configuration, options):
     """Generate the parent Makefile
     """
-    print "Setup the PyQwt3D build."
+    print("Setup the PyQwt3D build.")
      
     sipconfig.ParentMakefile(configuration = configuration,
                              subdirs = options.subdirs).generate()
@@ -977,9 +977,9 @@ def main():
     # parse the command line
     options, args = parse_args()
 
-    print "Command line options:"
+    print("Command line options:")
     pprint.pprint(options.__dict__)
-    print
+    print()
 
     configuration = get_pyqt_configuration(options)
 

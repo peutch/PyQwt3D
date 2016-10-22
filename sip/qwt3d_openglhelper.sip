@@ -44,7 +44,7 @@ public:
     void turnOff(bool = false);
 };
 
-const GLubyte * gl_error();
+//const GLubyte * gl_error();
 
 // FIXME: void SaveGlDeleteLists(GLuint &, GLsizei);
 // FIXME: void getMatrices(GLdouble *, GLdouble *, GLint *);

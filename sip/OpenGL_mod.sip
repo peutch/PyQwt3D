@@ -606,7 +606,7 @@ const int GL_EVAL_BIT;
 const int GL_LIST_BIT;
 const int GL_TEXTURE_BIT;
 const int GL_SCISSOR_BIT;
-const int GL_ALL_ATTRIB_BITS;
+const long GL_ALL_ATTRIB_BITS;
 
 
 /* OpenGL 1.1 */
@@ -653,7 +653,7 @@ const int GL_RGBA16;
 const int GL_CLIENT_PIXEL_STORE_BIT;
 const int GL_CLIENT_VERTEX_ARRAY_BIT;
 // Not on WIN32 and my x86_64 Gentoo: const int GL_ALL_CLIENT_ATTRIB_BITS;
-const int GL_CLIENT_ALL_ATTRIB_BITS;
+const long GL_CLIENT_ALL_ATTRIB_BITS;
 
 
 

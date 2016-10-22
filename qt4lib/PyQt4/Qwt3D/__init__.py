@@ -27,15 +27,16 @@
 # If PyQwt3D is dynamically linked with non-free versions of Qt and PyQt,
 # PyQwt3D becomes a free plug-in for a non-free program.
 
-from _Qwt3D import *
+from PyQt4.Qwt3D._Qwt3D import *
 
 try:
-    from ezplot import *
-except ImportError, message:
-    if 'numpy' in message:
-        print 'Install numpy to use ezplot'
-    else:
-        raise ImportError, message
+    from PyQt4.Qwt3D.ezplot import *
+except ImportError: #(message):
+    raise ImportError
+#    if 'numpy' in message:
+#        print('Install numpy to use ezplot')
+#    else:
+#        raise ImportError(message)
 
 def save(plot3d, name, format,
          landscape=VectorWriter.OFF,

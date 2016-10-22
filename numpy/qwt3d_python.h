@@ -37,7 +37,11 @@ void qwt3d_import_numeric();
 
 #ifdef HAS_NUMPY
 // to hide NumPy's import_array()
-void qwt3d_import_numpy();
+#if PY_MAJOR_VERSION >= 3
+    int qwt3d_import_numpy();
+#else
+    void qwt3d_import_numpy();
+#endif
 #endif // HAS_NUMPY
 
 // returns 1, 0, -1 in case of success, wrong object type, failure

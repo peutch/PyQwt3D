@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-"""
-ezplot is some sugar coating for Qwt3D
-"""
+#ezplot is some sugar coating for Qwt3D
+
 # Copyright (C) 2003-2007 Gerard Vermeulen
 #
 # This file is part of PyQwt3D.
@@ -32,8 +30,8 @@ ezplot is some sugar coating for Qwt3D
 __all__ = ('plot',)
 
 import numpy as np
-from _Qwt3D import SurfacePlot, RGBA
-from _Qwt3D import X1, X2, X3, X4, Y1, Y2, Y3, Y4, Z1, Z2, Z3, Z4
+from PyQt4.Qwt3D._Qwt3D import SurfacePlot, RGBA
+from PyQt4.Qwt3D._Qwt3D import X1, X2, X3, X4, Y1, Y2, Y3, Y4, Z1, Z2, Z3, Z4
 
 
 def tocube(x, y, z):

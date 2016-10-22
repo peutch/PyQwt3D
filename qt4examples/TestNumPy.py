@@ -3,7 +3,7 @@
 from numpy import *
 
 import sys
-from PyQt4.Qwt3D import *
+from PyQt4.Qwt3D._Qwt3D import *
 from PyQt4.Qt import *
 
 # enable all tracing options of the SIP generated bindings (requires -r option)
@@ -62,27 +62,27 @@ class Plot(SurfacePlot):
         if 'Verdana' in QFontDatabase().families():
             family = 'Verdana'
         family = 'Courier'
-            
+
         self.coordinates().setLabelFont(family, 14)
         self.coordinates().setNumberFont(family, 12)
 
         self.setBackgroundColor(RGBA(1.0, 1.0, 0.6))
-        
+
         self.setRotation(30, 0, 15)
         self.setScale(1.0, 1.0, 1.0)
 
         nx, ny, minx, maxx, miny, maxy = 3, 5, -1.0, 1.0, -1.0, 1.0
         if True:
             zs = matrix2d(nx, ny, minx, maxx, miny, maxy, saddle)
-            print type(zs)
-            print zs
+            print(type(zs))
+            print(zs)
             self.loadFromData(zs, minx, maxx, miny, maxy)
         else:
             xyzs = matrix3d(nx, ny, minx, maxx, miny, maxy, saddle)
-            print type(zs)
-            print xyzs
+            print(type(zs))
+            print(xyzs)
             self.loadFromData(xyzs)
-        
+
         axes = self.coordinates().axes # alias
 
         for axis, label in ((X1, "x"), (Y1, "y"), (Z1, "z")):

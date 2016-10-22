@@ -3,7 +3,7 @@
 import sys
 from math import cos, pi, sin
 from PyQt4.Qt import QApplication, QCoreApplication, QFont, QFontDatabase, Qt
-from PyQt4.Qwt3D import ParametricSurface, RGBA, SurfacePlot, Triple, NOCOORD
+from PyQt4.Qwt3D._Qwt3D import ParametricSurface, RGBA, SurfacePlot, Triple, NOCOORD
 
 class Sphere(ParametricSurface):
 

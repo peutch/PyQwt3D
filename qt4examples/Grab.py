@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 
-import inspect
+import inspect, sys
 # iqt is part of PyQwt
 import PyQt4.Qwt5.iqt
 from PyQt4.Qwt3D import Plot3D, save
 
-
+get_input = input
+# If this is Python 2, use raw_input()
+if sys.version_info[:2] <= (2, 7):
+    get_input = raw_input
+        
 def walk(p):
     if isinstance(p, Plot3D):
         yield p
@@ -13,40 +17,40 @@ def walk(p):
         for c in p.children():
             for cc in walk(c):
                yield cc
-        
+
 # def walk()
 
 
 def main():
-    print inspect.getsource(save)
+    print(inspect.getsource(save))
 
     for demo in ['ParametricSurfaceDemo',
                  'SimplePlot',
                  'TestNumPy',
                  ]:
         result = __import__(demo).make()
-        raw_input("Is the demo looking HAPPY? ")
+        get_input("Is the demo looking HAPPY? ")
 
         for format in ('png', 'pdf', 'ps', 'eps', 'svg'):
-            print 'Saving %s.%s...' % (demo, format),
+            print('Saving %s.%s...' % (demo, format))
             if save(result, '%s.%s' % (demo, format), format):
-                print 'success'
+                print('success')
             else:
-                print 'failure'
-                
+                print('failure')
+
     for demo in ['AutoSwitch',
                  'EnrichmentDemo',
                  ]:
         result = __import__(demo).make()
-        raw_input("Is the demo looking HAPPY? ")
+        get_input("Is the demo looking HAPPY? ")
 
         for i, w in enumerate(walk(result)):
             for format in ('png', 'pdf', 'ps', 'eps', 'svg'):
-                print 'Saving %s%s.%s...' % (demo, i, format),
+                print('Saving %s%s.%s...' % (demo, i, format),)
                 if save(w, '%s%s.%s' % (demo, i, format), format):
-                    print 'success'
+                    print('success')
                 else:
-                    print 'failure'
+                    print('failure')
             
 # main()
 
