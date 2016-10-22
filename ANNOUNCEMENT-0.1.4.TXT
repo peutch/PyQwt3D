@@ -1,0 +1,32 @@
+What is PyQwt3D?
+
+- it is a set of Python bindings for the QwtPlot3D C++ class library
+  which extends the Qt framework with widgets for 3D data visualization.
+  PyQwt3D inherits the snappy feel from QwtPlot3D.
+  The examples at http://pyqwt.sourceforge.net/pyqwt3d-examples.html
+  show how easy it is to make a 3D plot and how to save a 3D plot to
+  an image or an (E)PS/PDF file.
+
+- it requires and extends PyQt, a set of Python bindings for Qt.
+
+- it supports the use of PyQt, Qt, QwtPlot3D, and NumPy or SciPy in a
+  GUI Python application or in an interactive Python session.
+
+- it runs on POSIX, Mac OS X and Windows platforms (practically any
+  platform supported by Qt and Python).
+
+The home page of PyQwt3D is http://pyqwt.sourceforge.net.
+
+New features in PyQwt3D-0.1.4:
+- enabled support for SIP-4.6
+- an NSIS Windows installer
+
+PyQwt3D-0.1.4 supports:
+1. Python-2.5.x, -2.4.x, or -2.3.x.
+2. PyQt-4.2 and -4.1.x, or -3.17.x.
+3. SIP-4.6, or -4.5.x.
+4. Qt-4.2.x, Qt-4.1.x, Qt-3.3.x, or -3.2.x.
+5. QwtPlot3D-0.2.6.
+
+
+Enjoy -- Gerard Vermeulen

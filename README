@@ -1,0 +1,31 @@
+INTRODUCTION
+
+PyQwt3D is a set of Python bindings for the QwtPlot3D library.
+
+
+LICENSE
+
+GPL with an exception allowing dynamic linking with the non-free versions of
+Qt and PyQt.
+
+
+PREREQUISITES
+
+See Doc/html/pyqwt3d/prerequisites.html.
+
+
+INSTALLATION
+
+See Doc/html/pyqwt3d/install.html.
+
+
+Have fun -- Gerard Vermeulen
+
+
+..
+   Local Variables:
+   mode: indented-text
+   indent-tabs-mode: nil
+   sentence-end-double-space: t
+   fill-column: 79
+   End:

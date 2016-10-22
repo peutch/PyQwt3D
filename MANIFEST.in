@@ -1,0 +1,72 @@
+# MANIFEST template file to make a distribution tarball
+
+# Package stuff
+include COPYING COPYING.PyQwt3D ChangeLog THANKS TODO *.TXT
+include MANIFEST.in GNUmakefile NEWS
+
+# Documentation
+graft Doc
+prune Doc/html/htdoc
+recursive-exclude Doc *cvsignore* *~
+
+# configure
+graft configure
+prune configure/OpenGL_Qt3
+prune configure/OpenGL_Qt4
+prune configure/tmp-OpenGL_Qt3
+prune configure/tmp-OpenGL_Qt4
+prune configure/Qwt3D_Qt3
+prune configure/Qwt3D_Qt4
+prune configure/tmp-Qwt3D_Qt3
+prune configure/tmp-Qwt3D_Qt4
+recursive-exclude configure Makefile PyQwt3D.nsi *.cpp *.pyc *cvsignore* *~
+
+# Qt3 examples
+graft examples
+recursive-exclude examples *.html *.pdf *.png *ps *.pyc *.svg *cvsignore* *~
+
+# fake headers
+graft include
+recursive-exclude include *.pyqwt3d *cvsignore* *~
+
+# Numerical Python interface
+graft numpy
+recursive-exclude numpy *.py *cvsignore* *~
+
+# PyQwt python code for PyQt/Qt3
+graft qt3lib
+recursive-exclude qt3lib *cvsignore* *~
+
+# Qt4 examples
+graft qt4examples
+recursive-exclude qt4examples *.html *.pdf *.png *ps *.pyc *.svg *cvsignore* *~
+
+# PyQwt python code for PyQt4/Qt4
+graft qt4lib
+recursive-exclude qt4lib *cvsignore* *~
+
+
+# QwtPlot3D
+graft qwtplot3d-0.2.7
+recursive-exclude qwtplot3d-0.2.7 *~
+
+# sip files
+graft sip
+recursive-exclude sip *.py *cvsignore* *~
+
+# The zlib-1.2.3 library.
+graft zlib-1.2.3
+prune zlib-1.2.3/amiga
+prune zlib-1.2.3/as400
+prune zlib-1.2.3/contrib
+prune zlib-1.2.3/examples
+prune zlib-1.2.3/msdos
+prune zlib-1.2.3/old
+prune zlib-1.2.3/projects
+prune zlib-1.2.3/qnx
+prune zlib-1.2.3/win32
+
+
+# Local Variables: ***
+# mode: sh ***
+# End: ***

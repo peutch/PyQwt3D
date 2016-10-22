@@ -1,0 +1,32 @@
+v0.1.6 -- 2007-08-08
+- Fixed the display of text on screen and in pixmaps with Qt-4 and X.
+
+v0.1.5 -- 2007-08-07
+- Added support for QwtPlot3D-0.2.7
+- Added support for SIP-4.7, PyQt-4.3 and PyQt-3.17.3.
+- Added support for SVG and PGF vector output.
+- Added Qwt3D.save() to facilitate saving plots to a file.
+- Added Qwt3D.plot() to facilitate function plotting with nicely scaled axes.
+- Fixed the type of the result of IO.outputHandler(format).
+- Fixed saving to pixmap formats in qt4examples/Grab.py.
+
+v0.1.4 -- 2007-04-15
+- Added a NSIS Windows installer.
+- Added support for SIP-4.6.
+- Removed support for SIP-4.4 and the workarounds needed for SIP-4.4
+
+v0.1.2 -- 2006-10-29
+- Added support for Python-2.5 (requires PyQt and SIP snapshots or the future
+  PyQt-3.17, PyQt-4.1 and SIP-4.5).
+- support for Qt-4.2.x and -4.1.x
+- Added support for NumPy-1.0, see http://numpy.scipy.org.
+- Added PyQwt3D.OpenGL to give access to a small subset of the OpenGL API.
+- Added the EnrichmentDemo.py example to demonstrate PyQwt3D.OpenGL
+
+v0.1.1 -- 2006-02-18
+- Added support for NumPy, see http://numeric.scipy.org/
+- Added support for SIP-4.3.x.
+- Fixed build problems on Mac OS X.
+
+v0.1.0 -- 2005-02-27
+- The first release of PyQwt3D.

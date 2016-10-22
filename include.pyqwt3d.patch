@@ -1,0 +1,12 @@
+--- include/qwt3d_enrichment.h.pyqwt3d	2006-09-16 08:07:52.000000000 +0200
++++ include/qwt3d_enrichment.h	2006-09-16 08:09:46.000000000 +0200
+@@ -35,7 +35,8 @@
+   virtual void assign(Plot3D const& pl) {plot = &pl;} //!< Assign to existent plot;
+   virtual TYPE type() const = 0; //!< Overwrite 
+ 
+-protected:
++// A PyQwt3D hack
++public:
+   const Plot3D* plot;
+ };
+ 

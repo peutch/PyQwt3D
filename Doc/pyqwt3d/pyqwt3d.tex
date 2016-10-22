@@ -1,0 +1,898 @@
+\documentclass{manual}
+
+% Links
+\newcommand{\QwtPlotDdd}{\ulink{QwtPlot3D}
+  {http://qwtplot3d.sourceforge.net}}
+\newcommand{\QwtPlotDddApi}{\ulink{QwtPlot3D API documentation}
+  {http://qwtplot3d.sourceforge.net/web/navigation/api_frame.html}}
+\newcommand{\QwtPlotDddManual}{\ulink{QwtPlot3D manual}
+  {http://qwtplot3d.sourceforge.net/web/navigation/manual_frame.html}}
+\newcommand{\ZLib}{\ulink{ZLib}
+  {http://www.gzip.org/zlib}}
+\newcommand{\mailinglist}{\ulink{mailing list}
+  {mailto:pyqwt-users@lists.sourceforge.net}}
+
+% Source code
+\newcommand{\NumPy}{\ulink{NumPy}
+  {http://www.numpy.org}}
+\newcommand{\NumPyTarGz}{\ulink{numpy-1.0.3}
+  {http://prdownloads.sourceforge.net/numpy/numpy-1.0.3.tar.gz?download}}
+\newcommand{\numarray}{\ulink{numarray}
+  {http://www.stsci.edu/resources/software_hardware/numarray}}
+\newcommand{\numarrayTarGz}{\ulink{numarray-1.5.2.tar.gz}
+  {http://prdownloads.sourceforge.net/numpy/numarray-1.5.2.tar.gz?download}}
+\newcommand{\Numeric}{\ulink{Numeric}
+  {http://www.numpy.org}}
+\newcommand{\NumericTarGz}{\ulink{Numeric-24.2.tar.gz}
+  {http://prdownloads.sourceforge.net/numpy/Numeric-24.2.tar.gz?download}}
+\newcommand{\NewSip}{\ulink{sip-4.7.tar.gz}
+  {http://pyqwt.sourceforge.net/support/sip-4.7.tar.gz}}
+\newcommand{\PyQtGpl}{\ulink{PyQt-x11-gpl-3.17.3.tar.gz}
+  {http://pyqwt.sourceforge.net/support/PyQt-x11-gpl-3.17.3.tar.gz}}
+\newcommand{\PyQtMac}{\ulink{PyQt-mac-gpl-3.17.2.tar.gz}
+  {http://pyqwt.sourceforge.net/support/PyQt-mac-gpl-3.17.3/tar.gz}}
+\newcommand{\PyQtFGpl}{\ulink{PyQt4-x11-gpl-4.3.tar.gz}
+  {http://pyqwt.sourceforge.net/support/PyQt-x11-gpl-4.3.tar.gz}}
+\newcommand{\PyQtFMac}{\ulink{PyQt4-mac-gpl-4.3.tar.gz}
+  {http://pyqwt.sourceforge.net/support/PyQt-mac-gpl-4.3.tar.gz}}
+\newcommand{\PyQtCom}{\ulink{PyQt-commercial}
+  {http://www.riverbankcomputing.co.uk/pyqt/buy.php}}
+\newcommand{\PyQwtDddTarGz}{\ulink{PyQwt3D-0.1.6.tar.gz}
+  {http://prdownloads.sourceforge.net/pyqwt/PyQwt3D-0.1.6.tar.gz?download}}
+\newcommand{\QwtPlotDddTgz}{\ulink{qwtplot3d-0.2.7.tgz}
+  {http://prdownloads.sourceforge.net/qwtplot3d/qwtplot3d-0.2.7.tgz?download}}
+\newcommand{\QwtPlotDddZip}{\ulink{qwtplot3d-0.2.7.zip}
+  {http://prdownloads.sourceforge.net/qwtplot3d/qwtplot3d-0.2.7.zip?download}}
+\newcommand{\Examples}{\ulink{PyQwt3D examples}
+  {http://pyqwt.sourceforge.net/pyqwt3d-examples.html}}
+\newcommand{\MacPorts}{\ulink{MacPorts}
+  {http://www.macports.org}}
+
+% Installers for MS-Windows
+\newcommand{\PythonExe}{\ulink{python-2.5.1.msi}
+  {http://www.python.org/ftp/python/2.5/python-2.5.1.msi}}
+\newcommand{\NumPyExe}{\ulink{numpy-1.0.3.win32-py2.5.exe}
+  {http://prdownloads.sourceforge.net/numpy/numpy-1.0.3.win32-py2.5.exe}}
+\newcommand{\QtOldExe}{\ulink{qt-win-opensource-4.2.2-mingw.exe}
+  {ftp://ftp.trolltech.com/qt/source/qt-win-opensource-4.2.2-mingw.exe}}
+\newcommand{\QtNewExe}{\ulink{qt-win-opensource-4.2.3-mingw.exe}
+  {ftp://ftp.trolltech.com/qt/source/qt-win-opensource-4.2.3-mingw.exe}}
+\newcommand{\DevCpp}{\ulink{Dev-C++}
+  {http://prdownloads.sourceforge.net/dev-cpp/devcpp-4.9.9.2_setup.exe}}
+\newcommand{\PyQtOldExe}{\ulink{PyQt-gpl-4.1.1-Py2.5-Qt4.2.2.exe}
+  {http://pyqwt.sourceforge.net/support/PyQt-gpl-4.1.1-Py2.5-Qt4.2.2.exe}}
+\newcommand{\PyQtNewExe}{\ulink{PyQt-gpl-4.2-Py2.5-Qt4.2.3.exe}
+  {http://pyqwt.sourceforge.net/support/PyQt-gpl-4.2-Py2.5-Qt4.2.3.exe}}
+\newcommand{\PyQwtNewExe}{\ulink{PyQwt3D-0.1.6-Python2.5-Qt4.2.3-PyQt-4.2-NumPy1.0.3.exe}
+  {http://prdownloads.sourceforge.net/pyqwt/PyQwt3D-0.1.6-Python2.5-Qt4.2.3-PyQt-4.2-NumPy1.0.3.exe}}
+
+
+
+\newcommand{\PrerequisitesEnd}{
+  To exploit the full power of the PyQwt3D, you should install at
+  least one the Numerical Python extensions:
+  \NumPy{}, \numarray{}, \Numeric{}.
+
+  I am testing PyQwt3D with \NumPyTarGz{}, \numarrayTarGz{}, and
+  \NumericTarGz{}. \NumPy{} is actively developed and recommended;
+  \numarray{} and \Numeric{} are unmaintained.
+
+  \begin{notice}[note]
+    PyQwt3D contains a patched version of QwtPlot3D-0.2.7 to enable the
+    SVG and PGF vector output file formats and the patched version of
+    QwtPlot3D-0.2.7 is required when you want to use the SVG and PGF formats. 
+    The PyQwt3D extension module containing statically linked sources of
+    QwtPlot3D-0.2.7 coexists very well with system wide shared libraries
+    of any version of QwtPlot3D.
+  \end{notice}
+}
+
+\newcommand{\Future}{
+  \begin{notice}[warning]
+    The documentation is for the future PyQwt3D-0.1.6 which has not yet been
+    released.  Please refer, to the documentation in the release that you are
+    using.
+  \end{notice}
+}
+
+\renewcommand{\Future}{}
+
+
+\title{PyQwt3D Manual}
+
+% boilerplate.tex?
+\author{Gerard Vermeulen}
+
+\date{\today}
+\release{0.1.6}
+\setshortversion{0.1.6}
+
+\makeindex
+
+\begin{document}
+
+\maketitle
+
+% This makes the contents more accessible from the front page of the HTML.
+\ifhtml
+\chapter*{Front Matter \label{front}}
+\fi
+
+\input{copyright}
+
+
+\begin{abstract}
+
+\noindent
+PyQwt3D is a set of Python bindings for the \QwtPlotDdd{} library which extends
+the Qt framework with widgets to visualize 3-dimensional data.
+It allows you to integrate PyQt, Qt, QwtPlot3D, the Numerical Python
+extensions, and optionally SciPy in a GUI Python application or in an
+interactive Python session.
+
+\end{abstract}
+
+\tableofcontents
+
+\chapter{Introduction\label{introduction}}
+
+\Future{}
+
+PyQwt3D is a set of Python bindings for the \QwtPlotDdd{} library which extends
+the Qt framework with widgets to visualize 3-dimensional data.
+
+It wraps also a small subset of the OpenGL API.
+
+The \Examples{} show how to program with PyQwt3D.
+
+
+\chapter{Installation\label{installation}}
+
+\Future{}
+
+\begin{notice}[note]
+  PyQwt3D for Qt-3 can coexist with PyQwt3D for Qt-4. The statement
+  \begin{verbatim}
+import Qwt3D
+  \end{verbatim}
+  imports PyQwt3D for Qt-3 and the statement
+  \begin{verbatim}
+import PyQt4.Qwt3D
+  \end{verbatim}
+  imports PyQwt3D for Qt-4 
+\end{notice}
+
+
+\section{Installation prerequisites\label{prerequisites}}
+
+\Future{}
+
+Installation prerequisites for \PyQwtDddTarGz{} are:
+\begin{enumerate}
+\item
+  \ulink{Python}{http://www.python.org}.\\
+  Supported versions: Python-2.5.x, and Python-2.4.x.
+\item
+  \ulink{Qt}{http://www.trolltech.com}.\\
+  Supported versions: Qt-4.3.x, Qt-4.2.x, Qt-3.3.x, and Qt-3.2.x.
+\item
+  \NewSip{}.\\
+  Supported versions: SIP-4.7.x, SIP-4.6.x, and SIP-4.5.x.\\
+\item
+  \PyQtGpl{}, \PyQtFGpl, \PyQtMac{}, \PyQtFMac{} and \PyQtCom{}.\\
+  Supported versions: PyQt-4.3.x, PyQt-4.2.x, PyQt-4.1.x, and PyQt-3.17.x.\\
+\item
+  \QwtPlotDdd{}.\\
+  Supported versions: \QwtPlotDddTgz{} or \QwtPlotDddZip{}.
+  \PyQwtDddTarGz{} contains a version of \QwtPlotDdd{} for your convenience.
+  You can (but unless you are using Windows do not have to) compile and link
+  the \QwtPlotDdd{} sources statically into the PyQwt3D extension module.
+\item
+  \ZLib{} is needed to enable compression in the PDF and PostScript output of
+  \QwtPlotDdd{}.\\
+  Supported versions: zlib-1.2.x, and zlib-1.1.x.
+  \PyQwtDddTarGz{} contains the necessary source files of zlib-1.2.3 to remove
+  the dependency on zlib (but you are free to use an already installed shared
+  or dynamic load library of zlib).
+\end{enumerate}
+
+\PrerequisitesEnd{}
+
+
+\section{Installation\label{install}}
+
+\Future{}
+
+\subsection{Installation on \POSIX{} and MacOS/X\label{posix-install}}
+
+\Future{}
+
+The installation procedure consists of three steps:
+\begin{enumerate}
+\item
+  Unpack \PyQwtDddTarGz{}.
+\item
+  Do a quick start to test the installation by running the commands:
+\begin{verbatim}
+cd PyQwt3D-0.1.6
+cd configure
+python configure.py -Q ../qwtplot3d-0.2.7
+make
+make install
+\end{verbatim}
+  where the directory
+  \file{/sources/of/qwtplot3d} must contain the directories \file{3rdparty},
+  \file{include} and \file{src}.\\
+  The installation will fail if Qt has been configured without runtime type
+  information (RTTI).  In this case, run the commands:
+\begin{verbatim}
+cd PyQwt3D-0.1.6
+cd configure
+python configure.py -Q /sources/of/qwtplot3d --extra-cxxflags=-frtti
+make
+make install
+\end{verbatim}
+  where \code{-frtti} enables RTTI for g++.  Check your compiler documention
+  for other C++ compilers.
+\item
+  Fine tune (optional)
+  \begin{itemize}
+    \item
+      to enable compression of PostScript and PDF files by running the
+      commands:
+\begin{verbatim}
+python configure.py -Q /sources/of/qwtplot3d -l z -D HAVE_ZLIB
+make
+make install
+\end{verbatim}
+      Add
+\begin{verbatim}
+-L /directory/with/libz.*
+\end{verbatim}
+      to the \file{configure.py} options, if the linker fails to find the zlib
+      library.
+    \item
+      to use a the QwtPlot3D library on your system by running the commands:
+\begin{verbatim}
+rm -rf Qwt3D
+python configure.py -I /usr/include/qwtplot3d
+make
+make install
+\end{verbatim}
+      where \file{/usr/include/qwtplot3d} is an example for the installation
+      directory of the QwtPlot3D header files.
+      Add
+\begin{verbatim}
+-L /directory/with/libqwtplot3d.*
+\end{verbatim}
+      to the \file{configure.py} options, if the linker fails to find the
+      QwtPlot3D library.
+  \end{itemize}
+\end{enumerate}
+
+\begin{notice}[warning]
+  The patched version of QwtPlot3D-0.2.7 included in PyQwt3D is required
+  to enable saving of plots to the SVG and PGF vector file formats.
+  In addition, you have to define HAVE_ZLIB and HAVE_LIBPNG to enable pixmaps
+  in the SVG driver of GL2PS. A minimal configuration example is
+\begin{verbatim}
+python configure.py -Q ../qwtplot3d-0.2.7 -D HAVE_ZLIB -D HAVE_LIBPNG \
+    -l z -l png
+\end{verbatim}
+  which may need extra options to indicate the location of the headers and
+  libraries of libpng and zlib. For instance, a configuration example for
+  Mac OS X with libpng from \MacPorts{} is:
+\begin{verbatim}
+python configure.py -Q ../qwtplot3d-O.2.7 -I /opt/local/include \
+    -L /opt/local/lib -D HAVE_ZLIB -D HAVE_LIBPNG -l z -l png
+\end{verbatim}
+\end{notice}
+
+\begin{notice}[note]
+  \file{PyQwt-0.1.6/GNUmakefile} is makefile for GNU make which contains more
+  examples of how to invoke \file{configure.py}.
+  Adapt and use it, if you have GNU make.
+\end{notice}
+
+\begin{notice}[note]
+  If you run into problems, send a log to the \mailinglist{}.
+
+  There are at least two options to log the output of make:
+  \begin{enumerate}
+  \item Invoke make, tie stderr to stdout, and redirect stdout to LOG.txt:
+\begin{verbatim}
+# For Qt-3
+make 3 2&>1 >LOG.txt
+# For Qt-4
+make 4 2&>1 >LOG.txt
+\end{verbatim}
+    However, you do not see what is going on.
+  \item Use script to capture all screen output of make to LOG.txt:
+\begin{verbatim}
+# For Qt-3
+script -c 'make 3' LOG.txt
+# For Qt-4
+script -c 'make 4' LOG.txt
+\end{verbatim}
+    The script command appeared in 3.0BSD and is part of util-linux.
+  \end{enumerate}
+\end{notice}
+
+\begin{notice}[note]
+  The configure.py script takes many options. The command
+\begin{verbatim}
+python configure.py -h
+\end{verbatim}
+  displays a full list of the available options:
+  \verbatiminput{configure.help}
+\end{notice}
+
+
+\subsection{Installation on Windows with MSVC\label{win-install}}
+
+\Future{}
+
+The installation procedure consists of three steps:
+\begin{enumerate}
+\item
+  Unpack \PyQwtDddTarGz{}.
+\item
+  Do a quick start to test the installation by running the commands:
+\begin{verbatim}
+cd PyQwt3D-0.1.6
+cd configure
+python configure.py -Q ..\qwtplot3d-0.2.7
+nmake
+nmake install
+\end{verbatim}
+  where the folder
+  \file{C:\textbackslash{}sources\textbackslash{}of\textbackslash{}qwtplot3d}
+  must contain the folders \file{3rdparty}, \file{include} and \file{src}.
+  You can also edit one of the files \file{go3.bat}, \file{go4.bat}, or
+  \file{go-mingw.bat} to suit your setup.
+\item
+  Fine tune (optional) by running the commands:
+\begin{verbatim}
+python configure.py -Q C:\sources\of\qwtplot3d -l zlib -D HAVE_ZLIB
+nmake
+nmake install
+\end{verbatim}
+    to enable compression of PostScript and PDF files. Add
+\begin{verbatim}
+-L C:\folder\containing\zlib.lib
+\end{verbatim}
+    to the \file{configure.py} options, if the linker fails to find the zlib
+    library.
+\end{enumerate}
+
+\begin{notice}[note]
+  The files \file{configure\textbackslash{}go3.bat} and
+  \file{configure\textbackslash{}go4.bat} are examples of how to automatize
+  the invokations of \strong{configure.py}, \strong{nmake}, and
+  \strong{nmake install}.
+
+  The file \file{configure\textbackslash{}go-mingw.bat} is used to build
+  PyQwt3D with MinGW after building libpng by hand.
+
+  Adapt and use one of those files.
+\end{notice}
+
+\begin{notice}[note]
+  If you run into problems, send a log to the \mailinglist{}.
+
+  Try
+\begin{verbatim}
+go3.bat >LOG.txt
+\end{verbatim}
+  or
+\begin{verbatim}
+go4.bat >LOG.txt
+\end{verbatim}
+  to make a log.
+\end{notice}
+
+\begin{notice}[note]
+  The configure.py script takes many options. The command
+\begin{verbatim}
+python configure.py -h
+\end{verbatim}
+  displays a full list of the available options:
+  \verbatiminput{configure.help}
+\end{notice}
+
+\begin{notice}[note]
+  Since PyQwt3D wraps some classes and functions that are not exported from
+  a QwtPlot3D dynamic load library, you have to compile and link the QwtPlot3D
+  sources into PyQwt3D's extension module.
+\end{notice}
+
+\subsection{Binary Installer for Windows
+  \label{windows-nsis}}
+
+\Future{}
+
+Run the following installers, if you have not done so:
+\begin{enumerate}
+\item \PythonExe{}.
+\item \NumPyExe{}.
+\item \QtNewExe{}.\\
+  Let the Qt installer install MinGW if for instance \DevCpp{} has not been
+  installed before Qt.
+\item \PyQtNewExe{}.\\
+  Make sure that you can run the PyQt examples by tweaking the environment
+  variable \var{PATH}.
+\item Install \PyQwtNewExe{}.
+\end{enumerate}
+
+
+
+\chapter{PyQwt3D Module Reference \label{reference}}
+
+\Future{}
+
+The reference should be used in conjunction with the \QwtPlotDddManual{}
+and the \QwtPlotDddApi{}.
+Only the differences specific to the Python bindings are documented here.
+
+In this chapter, \emph{is not yet implemented} implies that the feature can
+be easily implemented if needed, \emph{is not implemented} implies that the
+feature is not easily implemented, and \emph{is not Pythonic} implies that
+the feature will not be implemented because it violates the Python philosophy
+(e.g. may use dangling pointers).
+
+If a class is described as being \emph{fully implemented} then all non-private
+member functions and all public class variables have been implemented.
+
+Undocumented classes have not yet been implemented or are still experimental.
+
+The classes in the QwtPlot3D library have quite a few protected attributes.
+They are not easily exported to Python (SIP wraps protected member function,
+but not protected attributes).
+I will export protected attributes to Python on demand. For instance,
+\var{Enrichment.plot} is accessible from Python, but protected in C++.
+
+
+\section{Class reference \label{classes}}
+
+\Future{}
+
+\begin{classdesc*}{Arrow}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{AutoScaler}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{Axis}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{AxisVector}
+  wraps \ctype{std::vector<Axis>}. See \ref{wrappers} for details.
+\end{classdesc*}
+
+\begin{classdesc*}{Cell}
+  wraps \ctype{std::vector<unsigned>}. See \ref{wrappers} for details.
+\end{classdesc*}
+
+\begin{classdesc*}{CellData}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{CellField}
+  wraps \ctype{std::vector<Cell>}. See \ref{wrappers} for details.
+\end{classdesc*}
+
+\begin{classdesc*}{Color}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{ColorLegend}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{Cone}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{CoordinateSystem}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{CrossHair}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{Data}
+  is fully implemented.\\
+  FIXME: what to do with the protected data members?
+\end{classdesc*}
+
+\begin{classdesc*}{Dot}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{DoubleVector}
+  wraps \ctype{std::vector<double>}. See \ref{wrappers} for details.
+\end{classdesc*}
+
+\begin{classdesc*}{Drawable}
+  is fully implemented.\\
+  FIXME: what to do with the protected data members?
+\end{classdesc*}
+
+\begin{classdesc*}{Enrichment}
+  is fully implemented.\\
+  \begin{cvardesc}{const Plot3D*}{plot}
+    This C++ protected data member is accessible in Python.
+  \end{cvardesc}
+\end{classdesc*}
+
+\begin{classdesc*}{Freevector}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{FreeVectorField}
+  wraps \ctype{std::vector<FreeVector>}. See \ref{wrappers} for details.
+\end{classdesc*}
+
+\begin{classdesc*}{Function}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{GLStateBewarer}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{GridData}
+  \begin{itemize}
+  \item{vertices}. The public data member:
+\begin{verbatim}
+DataMatrix vertices;
+\end{verbatim}
+    is not accessible. FIXME: how to wrap \class{DataMatrix} safely?
+  \item{normals}. The public data member:
+\begin{verbatim}
+DataMatrix normals;
+\end{verbatim}
+    is not accessible. FIXME: how to wrap \class{DataMatrix} safely?
+  \end{itemize}
+\end{classdesc*}
+
+\begin{classdesc*}{GridMapping}
+  is fully implemented.\\
+  FIXME: what to do with the protected data members?
+\end{classdesc*}
+
+\begin{classdesc*}{IO}
+  \begin{itemize}
+  \item{defineInputHandler}. C++ declaration:
+\begin{verbatim}
+static bool defineInputHandler(QString const& format, Function func);
+\end{verbatim}
+    is not implemented (it is impossible to implement callbacks without an
+    extra void pointer to hold a Python callable).
+  \item{defineOutputHandler}. C++ declaration:
+\begin{verbatim}
+static bool defineOutputHandler(QString const& format, Function func);
+\end{verbatim}
+    is not implemented (it is impossible to implement callbacks without an
+    extra void pointer to hold a Python callable).
+  \end{itemize}
+\end{classdesc*}
+
+\begin{classdesc*}{Label}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{LinearAutoscaler}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{LinearScale}
+  is fully implemented.\\
+  FIXME: what to do with the protected data members?
+\end{classdesc*}
+
+\begin{classdesc*}{LogScale}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{Mapping}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{NativeReader}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{ParallelEpiped}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{ParametricSurface}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{PixmapWriter}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{Plot3D}
+  is fully implemented.\\
+  FIXME: what to do with the protected data members?\\
+\end{classdesc*}
+
+\begin{classdesc*}{RGBA}
+  is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{Scale}
+  is fully implemented.\\
+  FIXME: what to do with the protected data members?
+\end{classdesc*}
+
+\begin{classdesc*}{StandardColor}
+  is fully implemented.\\
+  FIXME: what to do with the protected data members?
+\end{classdesc*}
+
+\begin{classdesc*}{SurfacePlot}
+  is fully implemented.
+  \begin{itemize}
+  \item{facets}. C++ declaration:
+\begin{verbatim}
+std::pair<int,int> facets() const;
+\end{verbatim}
+    returns a tuple of two Python ints.
+  \item{loadFromData}. C++ declaration:
+\begin{verbatim}
+bool loadFromData(Qwt3D::Triple** data,
+                  unsigned int columns, unsigned int rows,
+                  bool uperiodic = false, bool vperiodic = false);
+\end{verbatim}
+    is wrapped by:
+\begin{verbatim}
+success = surfacePlot.loadFromData(data, uperiodic = False, vperiodic = False)
+\end{verbatim}
+    where \var{success} is \constant{True} or \constant{False}, \var{data}
+    is convertable to a Numeric or numarray array of Python floats with a shape
+    (N, M, 3), and \var{uperiodic} and \var{vperiodic} are Python bools.\\
+    C++ declaration:
+\begin{verbatim}
+bool loadFromData(double** data, unsigned int columns, unsigned int rows,
+                  double minx, double maxx, double miny, double maxy);
+\end{verbatim}
+    is wrapped by:
+\begin{verbatim}
+success = surfacePlot.loadFromData(data, minx, maxx, miny, maxy)
+\end{verbatim}
+    where \var{success} is \constant{True} or \constant{False}, \var{data}
+    is convertable to a Numeric or numarray array of Python floats with a shape
+    (N, M), and \var{minx}, \var{maxx}, \var{miny} and \var{maxy} are
+    convertable to Python floats.\\
+    C++ declaration:
+\begin{verbatim}
+bool loadFromData(Qwt3D::TripleField const& data,
+                  Qwt3D::CellField const& poly);
+\end{verbatim}
+    is wrapped by:
+\begin{verbatim}
+success = surfacePlot.loadFromData(tripleField, cellField)
+\end{verbatim}
+    where \var{success} is \constant{True} or \constant{False},
+    \var{tripleField} is a \class{TripleField}, and \var{cellField} is a
+    \class{CellField}.
+  \item{createDataRepresentation}. C++ declarations:
+\begin{verbatim}
+bool createDataRepresentation(
+     Qwt3D::Triple** data, unsigned int columns, unsigned int rows,
+     bool uperiodic = false, bool vperiodic = false);
+bool createDataRepresentation(
+     double** data, unsigned int columns, unsigned int rows,
+     double minx, double maxx, double miny, double maxy);
+bool createDataRepresentation(
+     Qwt3D::TripleField const& data, Qwt3D::CellFieldconst& poly)
+\end{verbatim}
+    are deprecated and therefore not implemented.
+  \item{readIn}. C++ declaration:
+\begin{verbatim}
+void readIn(Qwt3D::GridData& grid, Triple** data,
+            unsigned int columns, unsigned int rows);
+\end{verbatim}
+    is wrapped by:
+\begin{verbatim}
+surfacePlot.readIn(gridData, data) 
+\end{verbatim}
+    where \var{gridData} is a \class{GridData}, and \var{data} is convertable
+    to a Numeric or numarray array of Python floats with a shape (N, M, 3).\\
+    C++ declaration:
+\begin{verbatim}
+void readIn(Qwt3D::GridData& grid, double** data,
+            unsigned int columns, unsigned int rows,
+            double minx, double maxx, double miny, double maxy);
+\end{verbatim}
+    is wrapped by:
+\begin{verbatim}
+surfacePlot.readIn(gridData, data, minx, maxx, miny, maxy)
+\end{verbatim}
+    where \var{gridData} is a \class{GridData}, \var{data} is convertable to
+    a Numeric or numarray array of Python floats with a shape (N, M), and
+    \var{minx}, \var{maxx}, \var{miny} and \var{maxy} are convertable to Python
+    floats.
+  \end{itemize}
+\end{classdesc*}
+
+\begin{classdesc*}{Triple}
+  \begin{itemize}
+  \item{operator *()}. C++ declaration:
+\begin{verbatim}
+Triple operator*(double, const Triple &);
+\end{verbatim}
+    is not implemented.
+  \item{operator /()}. C++ declaration:
+\begin{verbatim}
+Triple operator/(double, const Triple &);
+\end{verbatim}
+    is not implemented.
+  \end{itemize}
+\end{classdesc*}
+
+\begin{classdesc*}{TripleField}
+wraps \ctype{std::vector<Triple>}. See \ref{wrappers} for details.
+\end{classdesc*}
+
+\begin{classdesc*}{Tuple}
+is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{VectorWriter}
+is fully implemented.
+\end{classdesc*}
+
+\begin{classdesc*}{VertexEnrichment}
+is fully implemented.
+\end{classdesc*}
+
+\section{Wrappers for \ctype{std::vector<T>} \label{wrappers}}
+
+\Future{}
+
+PyQwt3D has a partial interface to the following C++ std::vector templates:
+\begin{enumerate}
+\item
+  \class{AxisVector} for \ctype{std::vector<Axis>}
+\item
+  \class{Cell} for \ctype{std::vector<unsigned>}
+\item
+  \class{CellField} for \ctype{std::vector<Cell>}
+\item
+  \class{ColorVector} for \ctype{std::vector<RGBA>}
+\item
+  \class{DoubleVector} for \ctype{std::vector<double>}
+\item
+  \class{FreeVectorField} for \ctype{std::vector<FreeVectorField>}
+\item
+  \class{TripleField} for \ctype{std::vector<Triple>}
+\end{enumerate}
+
+The interface implements four constructors for each template instantianation --
+taking Cell as example:
+\begin{enumerate}
+\item
+  \code{Cell()}
+\item
+  \code{Cell(size)}
+\item
+  \code{Cell(size, item)}
+\item
+  \code{Cell(otherCell)}
+\end{enumerate}
+
+and 13 member functions -- taking Cell as example:
+\begin{enumerate}
+\item
+  \code{result = cell.capacity()}
+\item
+  \code{cell.clear()}
+\item
+  \code{result = cell.empty()}
+\item
+  \code{result = cell.back()}
+\item
+  \code{result = cell.front()}
+\item
+  \code{result = cell.max_size()}
+\item
+  \code{cell.pop_back()}
+\item
+  \code{cell.push_back(item)}
+\item
+  \code{cell.reserve(size)}
+\item
+  \code{cell.reserve(size, item = 0)}
+\item
+  \code{cell.resize(size, item = 0)}
+\item
+  \code{result = cell.size()}
+\item
+  \code{cell.swap(otherCell)}
+\end{enumerate}
+
+Iterators are not yet implemented. However, the implementation of the
+Python slots \function{__getitem__}, \function{__len__} and
+\function{__setitem__} let you use those classes almost as a sequence.
+For instance:
+
+\verbatiminput{StdVectorExample.txt}
+
+\section{Function reference \label{functions}}
+
+\Future{}
+
+\begin{funcdesc}{plot}{x, y, function, title='', labels=('x', 'y', 'z')}
+  Returns a plot of \code{function(x, y)}
+  
+  Here, \var{x} and \var{y} are vectors, \var{function} is function of two
+  variables, \var{title} as string and \var{labels} a sequence of three strings.
+
+  The axes are scaled to make the axis frame cubic.
+\end{funcdesc}
+
+\begin{funcdesc}{save}{plot3d, name, format,
+    landscape=VectorWriter.OFF,
+    textmode=VectorWriter.NATIVE,
+    sortmode=sortmode=VectorWriter.BSPSORT}
+  Saves a snapshot of a Plot3D widget to a file.
+
+  Here, \var{plot3d} is a Plot3D  widget or a widget with a Plot3D widget as
+  child, \var{name} is the file name, and \var{format} a case-insensitive
+  string indicating the file format.  \var{landscape} can be
+  \constant{VectorWriter.ON}, \constant{VectorWriter.OFF}, or
+  \constant{VectorWriter.AUTO}, \var{textmode} can be
+  \constant{VectorWriter.PIXEL}, \constant{VectorWriter.NATIVE}, or
+  \constant{VectorWriter.TEX}, and \var{sortmode} can be
+  \constant{VectorWriter.NOSORT}, \constant{VectorWriter.SIMPLESORT}, or
+  \constant{VectorWriter.BSPSORT}.
+
+  PyQwt3D uses GL2PS to support vector formats as EPS, EPS_GZ, PDF, PGF, PS,
+  PS_GZ, SVG, and SVG_GZ. It uses Qt to support pixmap formats as GIF, JPEG,
+  PNG, and others.
+    
+  \function{save} returns \constant{True} on success and \constant{False} on
+  failure.
+\end{funcdesc}
+
+
+\begin{cfuncdesc}{const GLubyte*}{gl_error}{}
+  is implemented as
+  \begin{verbatim}
+message = gl_error()
+  \end{verbatim}
+\end{cfuncdesc}
+
+\begin{cfuncdesc}{bool}{ViewPort2World}
+  {double \&wx, double \&wy, double \&wz, double vx, double vy, double vz}
+  is implemented as
+  \begin{verbatim}
+success, wx, wy, wz = ViewPort2World(vx, vy, vz)
+  \end{verbatim}
+\end{cfuncdesc}
+
+\begin{cfuncdesc}{bool}{World2ViewPort}
+  {double \&vx, double \&vy, double \&vz, double wx, double wy, double wz}
+  is implemented as
+  \begin{verbatim}
+success, vx, vy, vz = World2Viewport(wx, wy, wz)
+  \end{verbatim}
+\end{cfuncdesc}
+
+
+\input{pyqwt3d.ind}
+
+\end{document}
+
+%% Local Variables:
+%% fill-column: 79
+%% End:

@@ -1,0 +1,40 @@
+What is PyQwt3D?
+
+- it is a set of Python bindings for the QwtPlot3D C++ class library
+  which extends the Qt framework with widgets for 3D data visualization.
+  PyQwt3D inherits the snappy feel from QwtPlot3D.
+  The examples at http://pyqwt.sourceforge.net/pyqwt3d-examples.html
+  show how easy it is to make a 3D plot and how to save a 3D plot to
+  an image or an (E)PS/PDF file.
+
+- it requires and extends PyQt, a set of Python bindings for Qt.
+
+- it supports the use of PyQt, Qt, Qwt, the Numerical Python extensions
+  (any combination of NumPy, numarray, and numarray) and optionally
+  SciPy in a GUI Python application or in an interactive Python session.
+
+- it runs on POSIX, Mac OS X and Windows platforms (practically any
+  platform supported by Qt and Python).
+
+
+New features:
+- support for Python-2.5 (requires PyQt and SIP snapshots or the future
+  PyQt-3.17, PyQt-4.1 and SIP-4.5)
+- support for Qt-4.2.x and -4.1.x
+- support for NumPy-1.0, see http://numpy.scipy.org
+- PyQwt3D.OpenGL gives access to a small subset of the OpenGL API
+- EnrichmentDemo.py example demonstrates PyQwt3D.OpenGL
+
+The home page of PyQwt3D is http://pyqwt.sourceforge.net.
+
+
+PyQwt3D-0.1.2 requires:
+
+1. Python-2.5.x,-2.4.x, or -2.3.
+2. PyQt-4.0.x, or -3.16.x (or the future PyQt-4.1 or PyQt-3.17)
+3. SIP-4.4.x (or the future SIP-4.5)
+4. Qt-4.2.x, Qt-4.1.x, Qt-3.3.x, or -3.2.x.
+5. QwtPlot3D-0.2.6.
+
+
+Have fun -- Gerard Vermeulen

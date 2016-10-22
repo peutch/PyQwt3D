@@ -1,0 +1,233 @@
+# PyQwt3D5 NSIS installer script.
+#
+# Copyright (C) 2004-2007 Gerard Vermeulen
+# 
+# This file is part of PyQwt3D.
+# 
+# PyQwt3D is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# PyQwt3D is supplied in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with PyQwt3D; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301, USA.
+#
+# In addition, as a special exception, Gerard Vermeulen give permission
+# to link PyQwt3D dynamically with non-free versions of Qt and PyQt,
+# and to distribute PyQwt3D in this form, provided that equally powerful
+# versions of Qt and PyQt have been released under the terms of the GNU
+# General Public License.
+#
+# If PyQwt3D is dynamically linked with non-free versions of Qt and PyQt,
+# PyQwt3D becomes a free plug-in for a non-free program.
+
+
+# These will change with different releases.
+!define PYQWT3D_VERSION        "0.1.6"
+!define PYQWT3D_PYQT_VERSION   "%(PYQT_VERSION)s"
+!define PYQWT3D_PYTHON_VERSION "%(PYTHON_VERSION)s"
+!define PYQWT3D_QT_VERSION     "%(QT_VERSION)s"
+!define PYQWT3D_NUMPY_VERSION  "%(NUMPY_VERSION)s"
+
+# These are all derived from the above.
+!define PYQWT3D_NAME           "PyQwt3D-${PYQWT3D_VERSION}"
+!define PYQWT3D_INSTALLDIR     "C:\Python${PYQWT3D_PYTHON_VERSION}\"
+!define PYQWT3D_PYTHON_HKLM    "Software\Python\PythonCore\${PYQWT3D_PYTHON_VERSION}\InstallPath"
+
+
+# Tweak some of the standard pages.
+!define MUI_WELCOMEPAGE_TEXT \
+"This wizard will guide you through the installation of ${PYQWT3D_NAME} \
+built with the MinGW compiler against:\r\n\
+- Python-${PYQWT3D_PYTHON_VERSION}.x\r\n\
+- Qt-${PYQWT3D_QT_VERSION}\r\n\
+- PyQt-${PYQWT3D_PYQT_VERSION}\r\n\
+- NumPy-${PYQWT3D_NUMPY_VERSION}.\r\n\
+\r\n\
+The license of the distribution of any of your software using PyQwt3D has to \
+be compatible with the GPL licence.  Assure your licensees 4 freedoms to \
+comply with the GPL:\r\n\
+0 - to run your software, for any purpose\r\n\
+1 - to study your software, and adapt it to his needs\r\n\
+2 - to redistribute copies so he can help his neighbor\r\n\
+3 - to improve your software, and release his improvements.\r\n\
+Access to the source code is a precondition for this.\r\n\
+\r\n\
+Click Next to continue."
+
+!define MUI_FINISHPAGE_LINK "Get the latest news of PyQwt3D here"
+!define MUI_FINISHPAGE_LINK_LOCATION "http://pyqwt.sourceforge.net"
+
+
+# Include the tools we use.
+!include MUI.nsh
+!include LogicLib.nsh
+
+
+# Define the product name and installer executable.
+Name "PyQwt3D"
+Caption "${PYQWT3D_NAME} Setup"
+OutFile "PyQwt3D-${PYQWT3D_VERSION}-Python${PYQWT3D_PYTHON_VERSION}-Qt${PYQWT3D_QT_VERSION}-PyQt${PYQWT3D_PYQT_VERSION}-NumPy${PYQWT3D_NUMPY_VERSION}.exe"
+
+
+# Set the install directory, from the registry if possible.
+InstallDir "${PYQWT3D_INSTALLDIR}"
+InstallDirRegKey HKLM "${PYQWT3D_PYTHON_HKLM}" ""
+
+
+# The different installation types.  "Full" is everything.  "Minimal" is the
+# runtime environment.
+InstType "Full"
+InstType "Minimal"
+
+
+# Maximum compression.
+SetCompressor /SOLID lzma
+
+# We want the user to confirm they want to cancel.
+!define MUI_ABORTWARNING
+
+
+Function .onInit
+    # Check the right version of Python has been installed.
+    ReadRegStr $0 HKLM "${PYQWT3D_PYTHON_HKLM}" ""
+
+    ${If} $0 == ""
+        MessageBox MB_YESNO|MB_ICONQUESTION \
+"This copy of PyQwt3D has been built against Python-${PYQWT3D_PYTHON_VERSION}.x \
+which doesn't seem to be installed.$\r$\n\
+$\r$\n\
+Do you with to continue with the installation?" IDYES GotPython
+            Abort
+GotPython:
+    ${Endif}
+FunctionEnd
+
+
+# Define the different pages.
+!insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_LICENSE "..\COPYING"
+!insertmacro MUI_PAGE_COMPONENTS
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
+  
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
+
+  
+# Other settings.
+!insertmacro MUI_LANGUAGE "English"
+
+
+# Installer sections.
+
+Section "Extension modules" SecModules
+    SectionIn 1 2 RO
+
+    # Make sure this is clean and tidy.
+    RMDir /r $PROGRAMFILES\PyQwt3D
+    CreateDirectory $PROGRAMFILES\PyQwt3D
+
+    SetOverwrite on
+
+    SetOutPath $INSTDIR\Lib\site-packages\PyQt4\Qwt3D
+    File .\Qwt3D_Qt4\__init__.py
+    File .\Qwt3D_Qt4\ezplot.py
+    File .\Qwt3D_Qt4\_Qwt3D.pyd
+    File .\OpenGL_Qt4\OpenGL.pyd
+SectionEnd
+
+Section "Documentation" SecDocumentation
+    SectionIn 1
+
+    SetOverwrite on
+
+    SetOutPath $PROGRAMFILES\PyQwt3D
+    File /r ..\Doc\html\pyqwt3d
+    File /r ..\qwtplot3d-0.2.7\doc\web\doxygen
+SectionEnd
+
+Section "Examples" SecExamples
+    SectionIn 1
+
+    SetOverwrite on
+
+    SetOutPath $PROGRAMFILES\PyQwt3D
+    File /r ..\qt4examples
+SectionEnd
+
+Section "Start Menu shortcuts" SecShortcuts
+    SectionIn 1
+
+    # Make sure this is clean and tidy.
+    RMDir /r "$SMPROGRAMS\${PYQWT3D_NAME}"
+    CreateDirectory "$SMPROGRAMS\${PYQWT3D_NAME}"
+
+    IfFileExists "$PROGRAMFILES\PyQwt3D\pyqwt3d\index.html" 0 +2
+        CreateShortCut "$SMPROGRAMS\${PYQWT3D_NAME}\PyQwt3D Documentation.lnk" "$PROGRAMFILES\PyQwt3D\pyqwt3d\index.html"
+        
+    IfFileExists "$PROGRAMFILES\PyQwt3D\doxygen\index.html" 0 +2
+        CreateShortCut "$SMPROGRAMS\${PYQWT3D_NAME}\QwtPlot3D Documentation.lnk" "$PROGRAMFILES\PyQwt3D\doxygen\index.html"
+
+    CreateShortCut "$SMPROGRAMS\${PYQWT3D_NAME}\QwtPlot3D Manual.lnk" "http://qwtplot3d.sourceforge.net"
+
+    IfFileExists "$PROGRAMFILES\PyQwt3D\qt4examples" 0 +3
+	SetOutPath $INSTDIR
+        CreateShortCut "$SMPROGRAMS\${PYQWT3D_NAME}\Examples Source.lnk" "$PROGRAMFILES\PyQwt3D\qt4examples"
+
+    CreateShortCut "$SMPROGRAMS\${PYQWT3D_NAME}\Uninstall PyQwt3D.lnk" "$PROGRAMFILES\PyQwt3D\Uninstall.exe"
+SectionEnd
+
+Section -post
+    # Tell Windows about the package.
+    WriteRegExpandStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\PyQwt3D" "UninstallString" '"$PROGRAMFILES\PyQwt3D\Uninstall.exe"'
+    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\PyQwt3D" "DisplayName" "${PYQWT3D_NAME}"
+    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\PyQwt3D" "DisplayVersion" "${PYQWT3D_VERSION}"
+    WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\PyQwt3D" "NoModify" "1"
+    WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\PyQwt3D" "NoRepair" "1"
+
+    # Save the installation directory for the uninstaller.
+    WriteRegStr HKLM "Software\PyQwt3D" "" $INSTDIR
+
+    # Create the uninstaller.
+    WriteUninstaller "$PROGRAMFILES\PyQwt3D\Uninstall.exe"
+SectionEnd
+
+
+# Section description text.
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+!insertmacro MUI_DESCRIPTION_TEXT ${SecModules} \
+"The PyQwt3D modules: Qwt, anynumpy, grace, iqt, qplt."
+!insertmacro MUI_DESCRIPTION_TEXT ${SecDocumentation} \
+"The PyQwt3D and Qwt documentation."
+!insertmacro MUI_DESCRIPTION_TEXT ${SecExamples} \
+"Ports to Python of the Qwt-5.0.1 examples."
+!insertmacro MUI_DESCRIPTION_TEXT ${SecShortcuts} \
+"Shortcuts to your Start Menu."
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
+
+
+Section "Uninstall"
+    # Get the install directory.
+    ReadRegStr $INSTDIR HKLM "Software\PyQwt3D" ""
+
+    # The modules section.
+    RMDir /r $INSTDIR\Lib\site-packages\PyQt4\Qwt3D
+
+    # The shortcuts section.
+    RMDir /r "$SMPROGRAMS\${PYQWT3D_NAME}"
+
+    # The examples section and the installer itself.
+    RMDir /r "$PROGRAMFILES\PyQwt3D"
+
+    # Clean the registry.
+    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\PyQwt3D"
+    DeleteRegKey HKLM "Software\PyQwt3D"
+SectionEnd

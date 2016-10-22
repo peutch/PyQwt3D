@@ -1,0 +1,23 @@
+>>> from Qwt3D import *
+>>> tf = TripleField()
+>>> tf.push_back(Triple(0.0, 1.0, 2.0))
+>>> tf.push_back(Triple(1.0, 2.0, 3.0))
+>>> for t in tf:                                 # thanks to __getitem__
+...  print t.x, t.y, t.z
+...
+0.0 1.0 2.0
+1.0 2.0 3.0
+>>> for i in range(len(tf)):                     # thanks to __len__
+...  print tf[i].x, tf[i].y, tf[i].z
+...
+0.0 1.0 2.0
+1.0 2.0 3.0
+>>> for i in range(len(tf)):                     # thanks to __len__
+...  tf[i] = Triple(i, 2*i, 3*i)		 # thanks to __setitem__
+...
+>>> for t in tf:                                 # thanks to __getitem__
+...  print t.x, t.y, t.z
+...
+0.0 0.0 0.0
+1.0 2.0 3.0
+>>>

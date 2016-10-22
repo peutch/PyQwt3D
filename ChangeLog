@@ -1,0 +1,1336 @@
+2008-11-03 07:23  gvermeul
+
+	* qt4examples/EnrichmentDemo.py: Add scaffolding.
+
+2008-11-02 10:15  gvermeul
+
+	* configure/configure.py: Update copyright dates.
+
+2008-11-02 09:57  gvermeul
+
+	* ChangeLog, configure/configure.py, sip/FILL,
+	  sip/OpenGL_Qt3_Module.sip, sip/OpenGL_Qt4_Module.sip,
+	  sip/OpenGL_mod.sip, sip/Qwt3D_Qt3_Module.sip,
+	  sip/Qwt3D_Qt4_Module.sip, sip/STD_VECTOR_BASE,
+	  sip/STD_VECTOR_USER, sip/features.sip, sip/qwt3d_autoscaler.sip,
+	  sip/qwt3d_axis.sip, sip/qwt3d_axisvector.sip, sip/qwt3d_cell.sip,
+	  sip/qwt3d_cellfield.sip, sip/qwt3d_color.sip,
+	  sip/qwt3d_colorlegend.sip, sip/qwt3d_colorvector.sip,
+	  sip/qwt3d_coordsys.sip, sip/qwt3d_doublevector.sip,
+	  sip/qwt3d_drawable.sip, sip/qwt3d_enrichment.sip,
+	  sip/qwt3d_enrichment_std.sip, sip/qwt3d_freevectorfield.sip,
+	  sip/qwt3d_function.sip, sip/qwt3d_gridmapping.sip,
+	  sip/qwt3d_io.sip, sip/qwt3d_io_gl2ps.sip,
+	  sip/qwt3d_io_reader.sip, sip/qwt3d_label.sip,
+	  sip/qwt3d_mapping.sip, sip/qwt3d_openglhelper.sip,
+	  sip/qwt3d_parametricsurface.sip, sip/qwt3d_plot.sip,
+	  sip/qwt3d_portability.sip, sip/qwt3d_scale.sip,
+	  sip/qwt3d_surfaceplot.sip, sip/qwt3d_triplefield.sip,
+	  sip/qwt3d_types.sip, sip/qwt3dmod.sip: Make PyQwt3D compile with
+	  the snapshots leading to SIP-4.8 by replacing size_type with
+	  size_t.  Update copyright dates.
+
+2008-10-26 15:52  gvermeul
+
+	* configure/: PyQwt3D.nsi.in, configure.py, go-mingw.bat: Fix some
+	  build problems on Windows.
+
+2007-08-08 11:31  gvermeul
+
+	* ANNOUNCEMENT-0.1.7.TXT, ChangeLog, setup.py: Prepare
+	  PyQwt3D-0.1.7.
+
+2007-08-08 06:40  gvermeul
+
+	* ChangeLog: Releasing PyQwt3D-0.1.6.
+
+2007-08-07 22:59  gvermeul
+
+	* ChangeLog, Doc/pyqwt3d/copyright.tex: Fix copyright date.
+
+2007-08-07 22:12  gvermeul
+
+	* NEWS, ChangeLog: Prepare PyQwt-0.1.6.
+
+2007-08-07 22:09  gvermeul
+
+	* ANNOUNCEMENT-0.1.6.TXT: Point out the necessity of the include
+	  patched QwtPlot3D library to improve the text display.
+
+2007-08-07 22:05  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Document go-mingw.bat.
+
+2007-08-07 21:47  gvermeul
+
+	* ANNOUNCEMENT-0.1.6.TXT, ChangeLog, Doc/pyqwt3d/pyqwt3d.tex,
+	  configure/PyQwt3D.nsi.in: Prepare PyQwt3D-0.1.6.
+
+2007-08-07 21:05  gvermeul
+
+	* qt4examples/EnrichmentDemo.py: Replace string "Courier" with
+	  variable 'family'.
+
+2007-08-07 20:56  gvermeul
+
+	* qt4examples/: AutoSwitch.py, EnrichmentDemo.py,
+	  ParametricSurfaceDemo.py, SimplePlot.py, TestNumPy.py: Fix typo,
+	  and look if colored text is working.
+
+2007-08-07 20:28  gvermeul
+
+	* pyqwt3d-0.2.7.patch: Made it work on Mac OS X with Qt-4.  It
+	  still looks bad on Mac OS X with Qt-3.
+
+2007-08-07 19:15  gvermeul
+
+	* pyqwt3d-0.2.7.patch: Try to improve the text display with Qt-4 on
+	  Linux.
+
+2007-08-07 19:13  gvermeul
+
+	* qt4examples/: AutoSwitch.py, EnrichmentDemo.py,
+	  ParametricSurfaceDemo.py, SimplePlot.py, TestNumPy.py: Add font
+	  twiddling code (we stick to courrier, but Verdana or the default
+	  application code are also easy to test).
+
+2007-08-07 18:28  gvermeul
+
+	* qt4examples/SimplePlot.py: Try to select the Verdana font falling
+	  back on the application font.
+
+2007-08-07 18:28  gvermeul
+
+	* setup.py: Prepare PyQwt-0.1.6.
+
+2007-08-07 11:19  gvermeul
+
+	* ChangeLog, Doc/pyqwt3d/pyqwt3d.tex: PyQwt3D-0.1.5 has been
+	  released.
+
+2007-08-07 10:13  gvermeul
+
+	* ChangeLog: Released as PyQwt3D-0.1.5 with Windows fixes.
+
+2007-08-07 10:11  gvermeul
+
+	* configure/go-mingw.bat: Add go-mingw.bat.
+
+2007-08-07 10:10  gvermeul
+
+	* configure/PyQwt3D.nsi.in: Remove its own PyQt4/Qwt3D directory
+	  instead of PyQt4/Qwt5.  Bump version.  Add more documentation.
+
+2007-08-07 08:09  gvermeul
+
+	* ChangeLog, MANIFEST.in: Oops, included QwtPlot3D-0.2.6 instead of
+	  QwtPlot3D-0.2.7.  Released as PyQwt3D-0.1.5.
+
+2007-08-07 07:41  gvermeul
+
+	* ANNOUNCEMENT-0.1.5.TXT: Fixed requirements and minor editing.
+
+2007-08-07 07:22  gvermeul
+
+	* ChangeLog, MANIFEST.in, NEWS: PyQwt3D-0.1.5 released.
+
+2007-08-06 09:03  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Fix the requirements concerning SIP and
+	  PyQt.
+
+2007-08-06 08:48  gvermeul
+
+	* qt3lib/Qwt3D/ezplot.py, qt4lib/PyQt4/Qwt3D/ezplot.py: Enable
+	  antialiasing.
+
+2007-08-05 12:19  gvermeul
+
+	* examples/Grab.py, qt3lib/Qwt3D/__init__.py, qt4examples/Grab.py,
+	  qt4lib/PyQt4/Qwt3D/__init__.py: Moved searching for Plot3D
+	  children from __init__.save() to the Grab.py example.
+
+2007-08-04 14:06  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Documented the configuration for SVG and
+	  PGF vector output file formats.
+
+2007-08-04 14:05  gvermeul
+
+	* configure/configure.py: Documented the HAVE_LIBPNG define.
+
+2007-08-03 20:01  gvermeul
+
+	* MANIFEST.in, NEWS: A first stab at a NEWS file.
+
+2007-08-03 19:46  gvermeul
+
+	* CHANGES-0.1.4.TXT: Merge CHANGES-0.1.4.TXT into a NEWS file.
+
+2007-08-02 08:54  gvermeul
+
+	* .cvsignore: Ignore libpng.
+
+2007-08-02 08:47  gvermeul
+
+	* ANNOUNCEMENT-0.1.5.TXT: A first stab at ANNOUNCEMENT-0.1.5.TXT.
+
+2007-08-02 08:29  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex, qt3lib/Qwt3D/ezplot.py,
+	  qt4lib/PyQt4/Qwt3D/ezplot.py: Simplified the axis scaling in
+	  plot() and update the documentation.
+
+2007-08-01 21:05  gvermeul
+
+	* GNUmakefile: Add a target to get libpng.  Fix typo.
+
+2007-08-01 20:32  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Link to the new SIP-4.7, PyQt-4.3, and
+	  PyQt-3.17.3.
+
+2007-08-01 16:52  gvermeul
+
+	* GNUmakefile: Fix QWT3DOPTIONS for Mac OS X.
+
+2007-08-01 10:55  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex, qt3lib/Qwt3D/__init__.py,
+	  qt3lib/Qwt3D/ezplot.py, qt4lib/PyQt4/Qwt3D/__init__.py,
+	  qt4lib/PyQt4/Qwt3D/ezplot.py: A first stab at ezplot.
+
+2007-08-01 09:52  gvermeul
+
+	* configure/configure.py: Add copyright notice.
+
+2007-07-31 08:22  gvermeul
+
+	* sip/qwt3d_axis.sip: Back out of the transfer of ownership fix in
+	  setScale(), because I do not really know how to fix it.
+
+2007-07-30 20:33  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Prepare release 0.1.5.  Document the
+	  save() function.
+
+2007-07-30 18:12  gvermeul
+
+	* sip/qwt3d_axis.sip: Fix ownership.
+
+2007-07-30 17:28  gvermeul
+
+	* GNUmakefile: Fix typo (-j).
+
+2007-07-29 19:46  gvermeul
+
+	* pyqwt3d-0.2.7.patch: Add SVG_GZ to setFormat().
+
+2007-07-29 19:03  gvermeul
+
+	* qt3lib/Qwt3D/__init__.py, qt4lib/PyQt4/Qwt3D/__init__.py: A first
+	  stab at a save() function.
+
+2007-07-29 19:01  gvermeul
+
+	* examples/EnrichmentDemo.py, examples/Grab.py,
+	  examples/SimplePlot.py, qt4examples/EnrichmentDemo.py,
+	  qt4examples/Grab.py, qt4examples/SimplePlot.py: Use the new
+	  save() function.  Minor editing.
+
+2007-07-29 19:00  gvermeul
+
+	* examples/.cvsignore: Ignore .eps, .ps and .svg files.
+
+2007-07-29 16:39  gvermeul
+
+	* GNUmakefile: Generate a QwtPlot3D source tree with documentation.
+	  Cleanup.
+
+2007-07-29 16:38  gvermeul
+
+	* pyqwt3d-0.2.7.patch: SVG and PGF output work.
+
+2007-07-29 16:03  gvermeul
+
+	* sip/qwt3d_io.sip: Remove the /Abstract/ annotation.  Add
+	  ConvertToSubClassCode.
+
+2007-07-29 13:43  gvermeul
+
+	* .cvsignore: Ignore qwtplot3d-doc and qwtplot3d-doc.zip.
+
+2007-07-29 13:40  gvermeul
+
+	* MANIFEST.in: Prune .eps, .ps .svg files.
+
+2007-07-29 12:48  gvermeul
+
+	* MANIFEST.in, configure/configure.py, qt3lib/Qwt3D/__init__.py,
+	  qt4lib/PyQt4/Qwt3D/__init__.py: Copy (instead of generate) the
+	  __init__.py files.
+
+2007-07-29 12:38  gvermeul
+
+	* configure/: go3.bat, go4.bat: Upgrade to QwtPlot3D-0.2.7.
+
+2007-07-29 04:35  gvermeul
+
+	* sip/OpenGL_Qt3_Module.sip, sip/OpenGL_Qt4_Module.sip,
+	  sip/OpenGL_mod.sip, sip/Qwt3D_Qt3_Module.sip,
+	  sip/Qwt3D_Qt4_Module.sip, sip/features.sip,
+	  sip/qwt3d_autoscaler.sip, sip/qwt3d_axis.sip,
+	  sip/qwt3d_axisvector.sip, sip/qwt3d_cell.sip,
+	  sip/qwt3d_cellfield.sip, sip/qwt3d_color.sip,
+	  sip/qwt3d_colorlegend.sip, sip/qwt3d_colorvector.sip,
+	  sip/qwt3d_coordsys.sip, sip/qwt3d_doublevector.sip,
+	  sip/qwt3d_drawable.sip, sip/qwt3d_enrichment.sip,
+	  sip/qwt3d_enrichment_std.sip, sip/qwt3d_freevectorfield.sip,
+	  sip/qwt3d_function.sip, sip/qwt3d_gridmapping.sip,
+	  sip/qwt3d_io.sip, sip/qwt3d_io_gl2ps.sip,
+	  sip/qwt3d_io_reader.sip, sip/qwt3d_label.sip,
+	  sip/qwt3d_mapping.sip, sip/qwt3d_openglhelper.sip,
+	  sip/qwt3d_parametricsurface.sip, sip/qwt3d_plot.sip,
+	  sip/qwt3d_portability.sip, sip/qwt3d_scale.sip,
+	  sip/qwt3d_surfaceplot.sip, sip/qwt3d_triplefield.sip,
+	  sip/qwt3d_types.sip, sip/qwt3dmod.sip, numpy/qwt3d_numarray.cpp,
+	  numpy/qwt3d_numarray.h, numpy/qwt3d_numeric.cpp,
+	  numpy/qwt3d_numeric.h, numpy/qwt3d_numpy.cpp,
+	  numpy/qwt3d_numpy.h, numpy/qwt3d_python.cpp,
+	  numpy/qwt3d_python.h: Bump copyright year.
+
+2007-07-28 15:50  gvermeul
+
+	* MANIFEST.in, PyQwt3D.spec, setup.py: Prepare PyQwt3D-0.1.5 and
+	  remove PyQwt3D.spec.
+
+2007-07-28 15:47  gvermeul
+
+	* qt4examples/.cvsignore: Ignore .eps, .ps, and .svg files.
+
+2007-07-28 15:45  gvermeul
+
+	* configure/configure.py: Support SIP-4.7.
+
+2007-07-28 15:43  gvermeul
+
+	* sip/: .cvsignore, types.sip: Remove types.sip since it is
+	  automagically generated.
+
+2007-07-28 15:41  gvermeul
+
+	* sip/qwt3d_mapping.sip: Switch to QwtPlot3D-0.2.7.
+
+2007-07-28 15:40  gvermeul
+
+	* .cvsignore, GNUmakefile, gendiff, pyqwt3d-0.2.7.patch,
+	  unbieber.py: Switch to qwtplot3d-0.2.7 and tools to patch it and
+	  to remove its the \r's and \t's.
+
+2007-07-25 20:51  gvermeul
+
+	* Doc/Makefile: Use Python-2.5.1 to generate the documentation.
+
+2007-04-28 16:30  gvermeul
+
+	* GNUmakefile: Distclean '.#*' files.  Build and clean before
+	  making a distribution.
+
+2007-04-15 15:30  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Prepare PyQwt3D-0.1.4.
+
+2007-04-15 15:29  gvermeul
+
+	* ANNOUNCEMENT-0.1.4.TXT, CHANGES-0.1.4.TXT, MANIFEST.in,
+	  Doc/pyqwt3d/pyqwt3d.tex: Prepare PyQwt-0.1.4.
+
+2007-04-12 15:00  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Fix typo.
+
+2007-04-12 14:50  gvermeul
+
+	* configure/PyQwt3D.nsi.in: Windows tweaks.
+
+2007-04-12 14:12  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Prepare PyQwt3D-0.1.4 with an NSIS
+	  Windows installer.
+
+2007-04-12 14:10  gvermeul
+
+	* sip/: qwt3d_drawable.sip, qwt3d_function.sip,
+	  qwt3d_parametricsurface.sip, types.sip: Drop support for
+	  SIP-4.4.x and zap the workarounds SIP-4.4.x bugs.
+	  ----------------------------------------------------------------------
+
+2007-04-11 15:14  gvermeul
+
+	* configure/configure.py: Require at least SIP-4.5, PyQt-3.17 or
+	  PyQt-4.1.  Kill a pychecker warning.	Minor editing.
+
+2007-04-09 14:17  gvermeul
+
+	* setup.py: Prepare release 0.1.4.
+
+2007-04-09 08:17  gvermeul
+
+	* MANIFEST.in, configure/.cvsignore, configure/PyQwt3D.nsi.in,
+	  configure/configure.py: A first stab at a Nullsoft Scriptable
+	  Install System script.
+
+2006-11-05 08:46  gvermeul
+
+	* Doc/Makefile: Fixes for Mac OS X.
+
+2006-11-05 08:04  gvermeul
+
+	* ANNOUNCEMENT-0.1.3.TXT, setup.py, Doc/pyqwt3d/pyqwt3d.tex,
+	  configure/configure.py: Prepare release 0.1.3.
+
+2006-10-29 18:25  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Prepare release 0.1.2.
+	  ----------------------------------------------------------------------
+
+2006-10-29 09:54  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Prepare release 0.1.2.
+
+2006-10-29 09:02  gvermeul
+
+	* ANNOUNCEMENT-0.1.2.TXT, setup.py: Prepare release 0.1.2.
+
+2006-10-29 08:59  gvermeul
+
+	* ANNOUNCEMENT-0.1.2.TXT, README, Doc/pyqwt3d/pyqwt3d.tex: Prepare
+	  release 0.1.2.
+	  ----------------------------------------------------------------------
+
+2006-10-09 23:58  gvermeul
+
+	* configure/configure.py: Make PyQwt3D build on MacOSX with
+	  Qt-4.2.0.
+
+2006-10-09 23:37  gvermeul
+
+	* .cvsignore, GNUmakefile, sip/OpenGL_mod.sip: Fixes for Mac OSX.
+	  PyQwt3D does not yet build with Qt-4.2.0, because the AGL
+	  framework is missing from the Makefiles.
+
+2006-10-08 07:08  gvermeul
+
+	* GNUmakefile: Remove dead code.
+
+2006-10-01 20:31  gvermeul
+
+	* configure/configure.py, sip/types.sip: size_t is an unsigned
+	  integer type.
+
+2006-10-01 20:21  gvermeul
+
+	* ANNOUNCEMENT-0.1.2.TXT, PyQwt3D.spec, THANKS, setup.py,
+	  Doc/pyqwt3d/pyqwt3d.tex: Prepare release 0.1.2.
+
+2006-10-01 12:32  gvermeul
+
+	* examples/PyFontify.py, qt4examples/PyFontify.py: Snarf
+	  PyFontify.py from PyQwt5.
+
+2006-10-01 12:27  gvermeul
+
+	* examples/EnrichmentDemo.py, qt4examples/EnrichmentDemo.py: Add a
+	  save() method, so that the example can be used by Grab.py.
+
+2006-10-01 12:18  gvermeul
+
+	* examples/EnrichmentDemo.py: Make the example reflect its C++
+	  counterpart.
+
+2006-10-01 12:04  gvermeul
+
+	* qt4examples/EnrichmentDemo.py: Finish the example.
+
+2006-10-01 12:01  gvermeul
+
+	* sip/: qwt3d_color.sip, types.sip: Fix transfer of ownership.
+
+2006-10-01 08:55  gvermeul
+
+	* qt4examples/EnrichmentDemo.py: A step in making this demo
+	  resemble its C++ equivalent.
+
+2006-10-01 08:18  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Document the functions of Qwt3D.
+	  Document go3.bat and go4.bat.  Document the policy on exporting
+	  protected C++ data members.
+
+2006-10-01 07:38  gvermeul
+
+	* configure/: go.bat, go3.bat, go4.bat: Renambe go.bat to go3.bat
+	  and add go4.bat.
+
+2006-09-30 10:33  gvermeul
+
+	* sip/OpenGL_mod.sip: Fix typo.
+
+2006-09-30 10:31  gvermeul
+
+	* sip/OpenGL_mod.sip: Fix for Win32.
+
+2006-09-25 23:00  gvermeul
+
+	* Doc/: Makefile, pyqwt3d/pyqwt3d.tex: Adapt to mkhowto of
+	  Python-2.5 in the new build environment.
+
+2006-09-23 17:30  gvermeul
+
+	* Doc/Makefile: Invoke Python explicitly (safer when having more
+	  than one Python).
+
+2006-09-23 17:12  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Document the compatibility of PyQwt3D
+	  with Python-2.5 and SIP/PyQt snapshots.
+
+2006-09-23 11:48  gvermeul
+
+	* configure/.cvsignore: Ignore size_t_check.cpp.
+
+2006-09-23 11:46  gvermeul
+
+	* sip/: OpenGL_mod.sip, STD_VECTOR_BASE, STD_VECTOR_USER,
+	  qwt3d_axisvector.sip, qwt3d_cell.sip, qwt3d_cellfield.sip,
+	  qwt3d_colorvector.sip, qwt3d_doublevector.sip,
+	  qwt3d_freevectorfield.sip, qwt3d_triplefield.sip, qwt3dmod.sip,
+	  types.sip: Make PyQwt3D compile with Python-2.5 on Gentoo x86-64.
+
+2006-09-16 13:23  gvermeul
+
+	* configure/configure.py, sip/Qwt3D_Qt3_Module.sip,
+	  sip/Qwt3D_Qt4_Module.sip, sip/types.sip: Overhaul typedefs: -
+	  configure.py generates sip/types.sip - fix the OpenGL typedefs in
+	  the Qwt3D modules.
+
+2006-09-16 12:54  gvermeul
+
+	* MANIFEST.in: Prune the build files for the OpenGL module.
+
+2006-09-16 11:02  gvermeul
+
+	* GNUmakefile, configure/.cvsignore, configure/configure.py,
+	  examples/EnrichmentDemo.py, qt4examples/EnrichmentDemo.py,
+	  sip/OpenGL_Qt3_Module.sip, sip/OpenGL_Qt4_Module.sip,
+	  sip/OpenGL_mod.sip, sip/qwt3d_opengl.sip, sip/qwt3dmod.sip: Move
+	  the OpenGL interface to a separate module.
+
+2006-09-16 10:10  gvermeul
+
+	* COPYING.PyQwt3D, MANIFEST.in, Doc/pyqwt3d/copyright.tex,
+	  sip/Qwt3D_Qt3_Module.sip, sip/Qwt3D_Qt4_Module.sip,
+	  sip/STD_VECTOR_BASE, sip/STD_VECTOR_USER, sip/features.sip,
+	  sip/qwt3d_autoscaler.sip, sip/qwt3d_axis.sip,
+	  sip/qwt3d_axisvector.sip, sip/qwt3d_cell.sip,
+	  sip/qwt3d_cellfield.sip, sip/qwt3d_color.sip,
+	  sip/qwt3d_colorlegend.sip, sip/qwt3d_colorvector.sip,
+	  sip/qwt3d_coordsys.sip, sip/qwt3d_doublevector.sip,
+	  sip/qwt3d_drawable.sip, sip/qwt3d_enrichment.sip,
+	  sip/qwt3d_enrichment_std.sip, sip/qwt3d_freevectorfield.sip,
+	  sip/qwt3d_function.sip, sip/qwt3d_gridmapping.sip,
+	  sip/qwt3d_io.sip, sip/qwt3d_io_gl2ps.sip,
+	  sip/qwt3d_io_reader.sip, sip/qwt3d_label.sip,
+	  sip/qwt3d_mapping.sip, sip/qwt3d_opengl.sip,
+	  sip/qwt3d_openglhelper.sip, sip/qwt3d_parametricsurface.sip,
+	  sip/qwt3d_plot.sip, sip/qwt3d_portability.sip,
+	  sip/qwt3d_scale.sip, sip/qwt3d_surfaceplot.sip,
+	  sip/qwt3d_triplefield.sip, sip/qwt3d_types.sip, sip/qwt3dmod.sip:
+	  Give permission to link PyQwt3D dynamically with non-free
+	  versions of Qt and PyQt as long as Qt and PyQt are also released
+	  under the GPL.
+
+2006-09-16 10:08  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Prepare release 0.1.2.
+
+2006-09-16 09:38  gvermeul
+
+	* examples/EnrichmentDemo.py, examples/Grab.py,
+	  examples/TestNumPy.py, qt4examples/EnrichmentDemo.py,
+	  qt4examples/Grab.py, qt4examples/TestNumPy.py,
+	  qt4examples/TestNumarray.py, qt4examples/TestNumeric.py: Add the
+	  EnrichmentDemo.py example (still to be finished).  Fix the other
+	  examples as far as needed.
+
+2006-09-16 09:02  gvermeul
+
+	* MANIFEST.in, include.pyqwt3d.patch, configure/configure.py,
+	  include/.cvsignore, include/qwt3d_enrichment.h,
+	  qt4examples/AutoSwitch.py, qt4examples/PyFontify.py,
+	  qt4examples/SimplePlot.py, qt4examples/py2html.py,
+	  sip/qwt3d_enrichment.sip: Add a fake header to make a protected
+	  data member accessible to Python.
+
+2006-09-15 21:34  gvermeul
+
+	* GNUmakefile, configure/configure.py: Fix distclean target.
+	  Remove MSVC indicator.
+
+2006-09-15 19:26  gvermeul
+
+	* MANIFEST.in: Adapt directory pruning.
+
+2006-09-15 08:34  gvermeul
+
+	* MANIFEST.in, qt4examples/.cvsignore,
+	  qt4examples/ParametricSurfaceDemo.py: Start adding examples for
+	  Qt-4.
+
+2006-09-15 08:07  gvermeul
+
+	* sip/: qwt3d_drawable.sip, qwt3d_function.sip,
+	  qwt3d_parametricsurface.sip: Work around a SIP-4.4.x regression
+	  by defining private copy constructors.
+
+	  ----------------------------------------------------------------------
+
+2006-09-15 07:07  gvermeul
+
+	* GNUmakefile, configure/.cvsignore, configure/configure.py,
+	  sip/Qwt3D_Qt3_Module.sip, sip/Qwt3D_Qt4_Module.sip,
+	  sip/features.sip, sip/qwt3d_plot.sip, sip/qwt3d_portability.sip,
+	  sip/qwt3d_surfaceplot.sip, sip/qwt3dmod.sip, sip/types.sip: Make
+	  PyQwt3D build for Qt-3 and Qt-4 with SIP-4.4.5.  The examples do
+	  not yet run because of problems with virtual functions.
+
+2006-09-14 07:45  gvermeul
+
+	* sip/qwt3d_autoscaler.sip: Fix %TypeHeaderCode for SIP-4.4.5.
+
+2006-09-14 07:40  gvermeul
+
+	* GNUmakefile, MANIFEST.in, Makefile: Rename Makefile to
+	  GNUmakefile.
+
+	  ----------------------------------------------------------------------
+
+2006-09-14 07:37  gvermeul
+
+	* sip/: qwt3d_plot.sip, qwt3d_portability.sip, qwt3dmod.sip: Add
+	  MouseState and KeyboardState for Qt-4.
+
+	  ----------------------------------------------------------------------
+
+2006-09-14 07:36  gvermeul
+
+	* setup.py: Generate snapshots instead of releases.
+
+2006-09-14 07:09  gvermeul
+
+	* configure/configure.py, sip/qwt3d_autoscaler.sip,
+	  sip/qwt3d_drawable.sip, sip/qwt3d_function.sip,
+	  sip/qwt3d_opengl.sip, sip/qwt3d_parametricsurface.sip,
+	  sip/qwt3d_plot.sip, sip/qwt3d_surfaceplot.sip, sip/qwt3dmod.sip,
+	  sip/types.sip: Initial attempt to make PyQwt3D compile with
+	  SIP-4.4.5 and PyQt-4.0.1.
+
+2006-09-14 07:02  gvermeul
+
+	* Doc/Makefile: Use mkhowto from Python-2.4.3.
+
+2006-02-21 19:26  gvermeul
+
+	* sip/: qwt3d_autoscaler.sip, qwt3d_enrichment.sip,
+	  qwt3d_scale.sip: Add missing /Factory/ annotations.
+
+2006-02-18 11:33  gvermeul
+
+	* MANIFEST.in, configure/go.bat, sip/qwt3dmod.sip: Prepare release
+	  0.1.1
+
+2006-02-18 10:39  gvermeul
+
+	* ANNOUNCEMENT-0.1.1.TXT, COPYING, MANIFEST.in, Makefile,
+	  PyQwt3D.spec, README, setup.py: Prepare release 0.1.1.
+
+2006-02-18 10:38  gvermeul
+
+	* Doc/pyqwt3d/: copyright.tex, pyqwt3d.tex: Update the
+	  documentation.
+
+2006-02-18 08:31  gvermeul
+
+	* configure/configure.py: Remove support for old SIP versions.	Add
+	  support for NumPy.
+
+2006-02-18 08:27  gvermeul
+
+	* COPYING.PyQwt3D: Remove the exception from the license.
+
+2006-02-18 08:24  gvermeul
+
+	* numpy/: qwt3d_numarray.cpp, qwt3d_numarray.h, qwt3d_numeric.cpp,
+	  qwt3d_numeric.h, qwt3d_numpy.cpp, qwt3d_numpy.h,
+	  qwt3d_python.cpp, qwt3d_python.h: Add support for NumPy.  Remove
+	  the special exception from the license.
+
+2006-02-18 08:18  gvermeul
+
+	* sip/: FILL, STD_VECTOR_BASE, STD_VECTOR_USER, features.sip,
+	  qwt3d_autoscaler.sip, qwt3d_axis.sip, qwt3d_axisvector.sip,
+	  qwt3d_cell.sip, qwt3d_cellfield.sip, qwt3d_color.sip,
+	  qwt3d_colorlegend.sip, qwt3d_colorvector.sip, qwt3d_coordsys.sip,
+	  qwt3d_doublevector.sip, qwt3d_drawable.sip, qwt3d_enrichment.sip,
+	  qwt3d_enrichment_std.sip, qwt3d_freevectorfield.sip,
+	  qwt3d_function.sip, qwt3d_gridmapping.sip, qwt3d_io.sip,
+	  qwt3d_io_gl2ps.sip, qwt3d_io_reader.sip, qwt3d_label.sip,
+	  qwt3d_mapping.sip, qwt3d_openglhelper.sip,
+	  qwt3d_parametricsurface.sip, qwt3d_plot.sip, qwt3d_scale.sip,
+	  qwt3d_surfaceplot.sip, qwt3d_triplefield.sip, qwt3d_types.sip,
+	  qwt3dmod.sip: Remove support for old SIP versions.  Change
+	  license to plain GPL.
+
+2006-02-18 07:53  gvermeul
+
+	* sip/copying.sip: Remove copying.sip.
+
+2006-02-18 07:43  gvermeul
+
+	* configure/: fix-nc-moc.py, nc-go.bat: Remove support for old SIP
+	  versions.
+
+2006-02-18 07:37  gvermeul
+
+	* sip/timelines.sip: Remove support for old SIP versions.
+
+2006-02-18 06:17  gvermeul
+
+	* examples/: TestNumPy.py, TestNumarray.py, TestNumeric.py: Remove
+	  support for older SIP versions.  Add support for NumPy.
+
+2006-02-18 05:23  gvermeul
+
+	* Doc/: Makefile, nospam.py, sourceforge.py: Use mkhowto & friends
+	  from Python source tree.
+
+2006-02-18 05:13  gvermeul
+
+	* .cvsignore: Exclude 3rd party sources.
+
+2006-01-12 06:18  gvermeul
+
+	* setup.py, configure/configure.py: Prepare a bug fix release.
+
+2005-03-15 08:38  gvermeul
+
+	* configure/configure.py: Fix typo in the license.
+
+2005-03-15 08:14  gvermeul
+
+	* configure/configure.py: Adapt the explicit scope resolution of
+	  POINTS for Windows to SIP-4.2.1.
+
+2005-02-27 10:16  gvermeul
+
+	* Makefile: Add forgotten 'symlinks' dependencies.  Add parallel
+	  build to the 'all' target for multiprocessor systems.
+
+2005-02-27 09:37  gvermeul
+
+	* ANNOUNCEMENT-0.1.TXT, Doc/pyqwt3d/pyqwt3d.tex: Narrow down the
+	  prerequisites.
+
+2005-02-27 09:36  gvermeul
+
+	* .cvsignore: Ignore LOG.* files.
+
+2005-02-27 09:20  gvermeul
+
+	* configure/configure.py: Improve a comment and fix a typo.
+
+2005-02-27 03:58  gvermeul
+
+	* ANNOUNCEMENT-0.1.TXT, examples/AutoSwitch.py,
+	  examples/ParametricSurfaceDemo.py, examples/SimplePlot.py,
+	  examples/TestNumarray.py, examples/TestNumeric.py: A few more
+	  final(?) touches.
+
+2005-02-26 17:23  gvermeul
+
+	* configure/configure.py: Forgot to rename SIP_4_0 and SIP_4_1 to
+	  SIP_4_0_0 and SIP_4_1_0.
+
+2005-02-26 16:57  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Prepare the release of PyQwt3D-0.1.
+
+2005-02-26 16:31  gvermeul
+
+	* ANNOUNCEMENT-0.1.TXT: Emphasize the output facilities.
+
+2005-02-26 12:57  gvermeul
+
+	* configure/configure.py, sip/qwt3d_io_gl2ps.sip,
+	  sip/qwt3d_io_reader.sip, sip/qwt3d_mapping.sip,
+	  sip/qwt3d_openglhelper.sip, sip/timelines.sip: Work around the
+	  SIP-4.2 failure to handle const * GLubyte gl_error().  Rename the
+	  SIP timelines, so that they take 3 digits instead of 2.
+
+2005-02-26 03:54  gvermeul
+
+	* ANNOUNCEMENT-0.1.TXT: Add a link to the examples.
+
+2005-02-26 03:25  gvermeul
+
+	* README: Do not duplicate information which can be found in
+	  Doc/html/pyqwt3d.
+
+2005-02-26 03:13  gvermeul
+
+	* examples/Grab.py: Grab the output of TestNumeric too.
+
+2005-02-26 03:11  gvermeul
+
+	* MANIFEST.in: Do not distribute examples/*.{html,pdf, png}.
+
+2005-02-25 06:26  gvermeul
+
+	* examples/Grab.py: A tool to grab the widgets
+
+2005-02-25 06:23  gvermeul
+
+	* examples/: Makefile, PyFontify.py, py2html.py: Tools to create
+	  fontified HTML
+
+2005-02-25 06:21  gvermeul
+
+	* examples/: AutoSwitch.py, TestNumarray.py, TestNumeric.py: Code
+	  cleanup.
+
+2005-02-25 06:18  gvermeul
+
+	* examples/ParametricSurfaceDemo.py: Code cleanup.
+
+2005-02-25 06:15  gvermeul
+
+	* examples/SimplePlot.py: Code clean-up.
+
+2005-02-25 06:01  gvermeul
+
+	* examples/.cvsignore: Ignore .html, .pdf, .png, and .pyc files.
+
+2005-02-24 08:38  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Add build instruction for
+	  QtWin230-NonCommercial.exe.
+
+2005-02-24 08:36  gvermeul
+
+	* ANNOUNCEMENT-0.1.TXT: Prepare the release of PyQwt3D-0.1.
+
+2005-02-23 08:12  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Prepare the release of PyQwt3D-0.1
+
+2005-02-20 06:16  gvermeul
+
+	* Makefile: Add support for ccache.  Add tips to log the output of
+	  make (for debugging).
+
+2005-02-20 05:25  gvermeul
+
+	* configure/configure.py: Improve the help for the --timeline
+	  option.
+
+2005-02-20 05:08  gvermeul
+
+	* sip/qwt3d_openglhelper.sip: Comment out gl_error(), since it
+	  breaks SIP-4.2.
+
+2005-02-20 03:57  gvermeul
+
+	* numpy/: qwt3d_numarray.cpp, qwt3d_numarray.h, qwt3d_numeric.cpp,
+	  qwt3d_numeric.h, qwt3d_python.cpp, qwt3d_python.h: Update
+	  copyright dates
+
+2005-02-19 08:41  gvermeul
+
+	* sip/qwt3d_plot.sip: Try to fix a Windows problem by using
+	  sipMapStringToClass.
+
+2005-01-23 15:19  gvermeul
+
+	* examples/ParametricSurfaceDemo.py: Shows how the Python slot
+	  __call__ interfaces to the C++ operator()().
+
+2005-01-23 15:06  gvermeul
+
+	* configure/configure.py: Adapted the __init__.py generation to the
+	  upcoming release of SIP-4.2.
+
+2005-01-23 14:09  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Completed the class reference
+	  documentation.
+
+2005-01-23 08:25  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Update for the future release of
+	  SIP-4.2.  A few tweaks in the class reference.
+
+2005-01-23 07:32  gvermeul
+
+	* Doc/pyqwt3d/copyright.tex: Update copyright date.
+
+2005-01-23 06:58  gvermeul
+
+	* sip/: FILL, STD_VECTOR_BASE, STD_VECTOR_USER, features.sip,
+	  qwt3d_autoscaler.sip, qwt3d_axis.sip, qwt3d_axisvector.sip,
+	  qwt3d_cell.sip, qwt3d_cellfield.sip, qwt3d_colorlegend.sip,
+	  qwt3d_colorvector.sip, qwt3d_coordsys.sip,
+	  qwt3d_doublevector.sip, qwt3d_drawable.sip, qwt3d_enrichment.sip,
+	  qwt3d_enrichment_std.sip, qwt3d_freevectorfield.sip,
+	  qwt3d_gridmapping.sip, qwt3d_label.sip, qwt3d_openglhelper.sip,
+	  qwt3d_plot.sip, qwt3d_scale.sip, qwt3d_surfaceplot.sip,
+	  qwt3d_triplefield.sip, qwt3d_types.sip: Update copyright dates.
+
+2005-01-23 06:54  gvermeul
+
+	* configure/configure.py: Differentiate between SIP versions with a
+	  timeline instead of features.
+
+2005-01-23 06:50  gvermeul
+
+	* sip/: timelines.sip, qwt3d_io_reader.sip, qwt3d_mapping.sip,
+	  qwt3dmod.sip: Differentiate between SIP versions with a timeline
+	  instead of features.
+
+2005-01-23 06:44  gvermeul
+
+	* sip/qwt3d_io_gl2ps.sip: Differentiate between SIP versions with a
+	  timeline instead of features.
+
+2004-12-10 04:06  gvermeul
+
+	* configure/configure.py: Add option groups.  Also install the .sip
+	  files specific to SIP-4.0.x, -4.1.x or -4.2.x.
+
+2004-12-09 21:50  gvermeul
+
+	* sip/qwt3d_color.sip: Make qwt3d_color.sip also SIP specific
+
+2004-12-09 20:52  gvermeul
+
+	* configure/configure.py: Fix typo
+
+2004-12-09 08:05  gvermeul
+
+	* MANIFEST.in: Create separate directories for SIP-4.0.x, -4.1.x
+	  and -4.2.x for difficult .sip files.
+
+2004-12-09 07:45  gvermeul
+
+	* configure/configure.py: Create separate directories for
+	  SIP-4.0.x, -4.1.x and -4.2.x for difficult .sip files.
+
+2004-12-09 07:45  gvermeul
+
+	* sip/: qwt3d_function.sip, qwt3d_io.sip, qwt3d_mapping.sip,
+	  qwt3d_parametricsurface.sip: Move difficult .sip files to
+	  separate directories.
+
+2004-12-08 21:57  gvermeul
+
+	* configure/configure.py: Generate a different __init__.py file for
+	  SIP-4.2.x than for SIP-4.1.x and SIP-4.0.x.
+
+2004-12-08 07:56  gvermeul
+
+	* sip/qwt3d_io.sip: Enable the 'virtual bool operator()(..) = 0'
+	  for SIP-4.2.x.
+
+2004-12-08 07:42  gvermeul
+
+	* sip/: qwt3d_io_gl2ps.sip, qwt3d_io.sip: Add initial support for
+	  the snapshots leading to SIP-4.2.x.
+
+2004-12-08 07:22  gvermeul
+
+	* sip/: qwt3d_color.sip, qwt3d_function.sip,
+	  qwt3d_parametricsurface.sip: Add support for the snapshots
+	  leading to SIP-4.2.x.  Drop support for SIP-3.11.x.
+
+2004-12-08 07:18  gvermeul
+
+	* configure/configure.py, sip/features.sip: Add support for the
+	  snapshots leading to SIP-4.2.x.  Drop support for SIP-3.11.x.
+
+2004-12-02 18:33  gvermeul
+
+	* configure/nc-go.bat: Add comments.
+
+2004-12-02 18:01  gvermeul
+
+	* configure/nc-go.bat: Batch file for QtWin230-NC to work around
+	  MSVC and/or tmake quirks.
+
+2004-12-01 08:30  gvermeul
+
+	* Doc/pyqwt3d/.cvsignore: Ignore configure.help.
+
+2004-12-01 08:29  gvermeul
+
+	* Doc/pyqwt3d/configure.help: Remove configure.help, because it is
+	  automatically generated.
+
+2004-12-01 08:25  gvermeul
+
+	* Doc/Makefile: Make pyqwt3d/configure.help depend on
+	  ../configure/configure.py.
+
+2004-12-01 08:19  gvermeul
+
+	* MANIFEST.in: Kill warning messages.
+
+2004-12-01 08:17  gvermeul
+
+	* MANIFEST.in: Add the important files of the zlib-1.2.1 library to
+	  the source distribution.
+
+2004-12-01 08:01  gvermeul
+
+	* Makefile: Use the -Z option in the 'static' target.
+
+2004-12-01 07:59  gvermeul
+
+	* configure/configure.py: Add the possibility to compile and link
+	  the sources of zlib statically into the PyQwt3D module.
+
+2004-12-01 07:50  gvermeul
+
+	* .cvsignore: Ignore zlib-1.2.1.
+
+2004-11-30 22:41  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Update the status on MSVC-6.0
+
+2004-11-30 20:38  gvermeul
+
+	* MANIFEST.in: Do not distribute backup and CVS files.
+
+2004-11-30 20:21  gvermeul
+
+	* configure/fix-nc-moc.py: Patch the output of moc included with
+	  QtWin230-NonCommercial.exe.
+
+2004-11-30 08:06  gvermeul
+
+	* MANIFEST.in, Makefile: Add qwtplot3d-0.2.4-beta-patched.
+
+2004-11-30 07:40  gvermeul
+
+	* .cvsignore: Ignore qwtplot3d-0.2.4-beta-patched.
+
+2004-11-29 02:07  gvermeul
+
+	* configure/configure.py: Minor editing.
+
+2004-11-29 01:50  gvermeul
+
+	* configure/configure.py: Reorganize to copy and generate all files
+	  into the temporary build directory.  Rename
+	  lazy_copy_sip_output_file() to lazy_copy_file().
+
+2004-11-28 11:19  gvermeul
+
+	* sip/qwt3d_plot.sip: Disable the %ConvertToSubClassCode section in
+	  Plot3D for MSVC on Windows, because importing Qwt3D on that
+	  platform with the %ConvertToSubClassCode section enabled leaves
+	  the Python interpreter in a weird state: it crashes when using an
+	  undefined name instead of raising a NameError.
+
+2004-11-28 01:36  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Note the MSVC-6.0 problem.
+
+2004-11-27 09:04  gvermeul
+
+	* configure/configure.py: Factor out the fixing of the SIP build
+	  file
+
+2004-11-25 17:39  gvermeul
+
+	* Makefile: Add install target
+
+2004-11-24 07:07  gvermeul
+
+	* examples/: TestNumarray.py, TestNumeric.py: Enable tracing of the
+	  SIP generated bindings
+
+2004-11-24 06:34  gvermeul
+
+	* Makefile, Doc/pyqwt3d/configure.help, configure/configure.py:
+	  Facilitate debugging and tracing
+
+2004-11-23 22:17  gvermeul
+
+	* configure/configure.py: More streamlining
+
+2004-11-23 20:56  gvermeul
+
+	* sip/qwt3d_surfaceplot.sip: Introduce PYQWT3D_DEBUG to rationalize
+	  debugging.
+
+2004-11-23 20:21  gvermeul
+
+	* sip/qwt3d_function.sip: Document the limits of SIP with respect
+	  to an 'abstract virtual operator()'.
+
+2004-11-23 08:31  gvermeul
+
+	* configure/configure.py: Make PyQwt3D working with SIP-3.11.x
+
+2004-11-23 07:32  gvermeul
+
+	* configure/configure.py: Fix error in configuration for SIP-3.11.x
+
+2004-11-23 07:24  gvermeul
+
+	* Doc/pyqwt3d/: StdVectorExample.txt, pyqwt3d.tex: Started the
+	  module reference
+
+2004-11-23 06:39  gvermeul
+
+	* README: Fix typo and formatting
+
+2004-11-22 18:31  gvermeul
+
+	* configure/configure.py: The count() method of a list takes 1
+	  argument
+
+2004-11-22 08:25  gvermeul
+
+	* Doc/pyqwt3d/configure.help, configure/configure.py: Fix typo
+
+2004-11-22 08:20  gvermeul
+
+	* Doc/pyqwt3d/: configure.help, pyqwt3d.tex: Fix a few typos and
+	  imprecisions
+
+2004-11-22 08:17  gvermeul
+
+	* configure/configure.py: Add concatenation of SIP generated source
+	  files to speed up compilation.  Generalize: #Windows fix: resolve
+	  the scope of POINTS in enumValues[].
+
+2004-11-22 08:12  gvermeul
+
+	* PyQwt3D.spec: Concatenate SIP generated source code and take
+	  advantage of multiple processors to reduce the build time.
+
+2004-11-20 12:17  gvermeul
+
+	* Doc/pyqwt3d/pyqwt3d.tex: Fix typos
+
+2004-11-20 12:11  gvermeul
+
+	* Doc/pyqwt3d/configure.help, Doc/pyqwt3d/pyqwt3d.tex,
+	  configure/configure.py, configure/go.bat: Improve the
+	  installation tools and the documentation
+
+2004-11-20 08:36  gvermeul
+
+	* PyQwt3D.spec: Add the documentation
+
+2004-11-20 08:27  gvermeul
+
+	* MANIFEST.in: Provide all tools to regenerate the documentation
+
+2004-11-20 08:13  gvermeul
+
+	* Makefile: Update documentation before a source distribution
+
+2004-11-20 08:07  gvermeul
+
+	* MANIFEST.in: Zap unnecessary files
+
+2004-11-20 07:55  gvermeul
+
+	* Doc/html/icons/: blank.png, contents.png, index.png, modules.png,
+	  next.png, previous.png, pyfav.png, up.png: Fill documentation
+	  directory
+
+2004-11-20 07:51  gvermeul
+
+	* Doc/html/: .cvsignore, about.dat, style.css: Fill documentation
+	  directory
+
+2004-11-20 07:48  gvermeul
+
+	* Doc/pyqwt3d/: configure.help, copyright.tex, pyqwt3d.tex: Fill
+	  documentation directory
+
+2004-11-20 07:43  gvermeul
+
+	* Doc/: .cvsignore, Makefile: Fill documentation directory
+
+2004-11-20 07:42  gvermeul
+
+	* MANIFEST.in: Add documentation to source distribution
+
+2004-11-20 02:52  gvermeul
+
+	* MANIFEST.in, Makefile: Make "make dist" more developer friendly
+
+2004-11-20 02:35  gvermeul
+
+	* MANIFEST.in, THANKS: Add THANKS
+
+2004-11-20 02:27  gvermeul
+
+	* configure/: configure.py, go.bat: Do more refactoring.  Make sure
+	  that __init__.py exists, if it has been deleted (Jay O'Connor).
+	  Hardwire as much options as possible for Windows.
+
+2004-11-19 08:19  gvermeul
+
+	* configure/: configure.py, go.bat: Code cleanup and addition of
+	  the -x option
+
+2004-11-19 08:18  gvermeul
+
+	* configure/.cvsignore: Ignore *.pyc
+
+2004-11-19 08:17  gvermeul
+
+	* numpy/: qwt3d_numarray.cpp, qwt3d_numeric.cpp: Remove debugging
+	  code
+
+2004-11-19 06:24  gvermeul
+
+	* sip/: FILL, qwt3d_axisvector.sip, qwt3d_cell.sip,
+	  qwt3d_cellfield.sip, qwt3d_colorvector.sip,
+	  qwt3d_doublevector.sip, qwt3d_freevectorfield.sip,
+	  qwt3d_triplefield.sip: Zap some "using namespace std;"
+
+2004-11-18 21:56  gvermeul
+
+	* Makefile, configure/configure.py: Add an option to compile and
+	  link QwtPlot3D statically into PyQwt3D
+
+2004-11-18 21:54  gvermeul
+
+	* sip/qwt3d_types.sip: Let configure.py patch POINTS to
+	  Qwt3D::Points
+
+2004-11-18 15:32  gvermeul
+
+	* configure/go.bat: An example of "python configure.py [options]"
+	  on Windows
+
+2004-11-18 15:30  gvermeul
+
+	* sip/features.sip, sip/qwt3d_color.sip,
+	  sip/qwt3d_parametricsurface.sip, sip/qwt3d_surfaceplot.sip,
+	  sip/qwt3d_types.sip, configure/configure.py: Work around
+	  limitations of MSVC-6.0
+
+2004-11-18 08:02  gvermeul
+
+	* configure/configure.py: Path separator fixes for Windows
+
+2004-11-17 22:09  gvermeul
+
+	* configure/configure.py, sip/features.sip, sip/qwt3d_color.sip,
+	  sip/qwt3d_function.sip, sip/qwt3d_parametricsurface.sip: First
+	  step towards compatibility with SIP-3.11.x
+
+2004-11-17 07:22  gvermeul
+
+	* Makefile: Use of 'python configure.py' imports the correct
+	  'pyqtconfig'.
+
+2004-11-17 06:57  gvermeul
+
+	* sip/: features.sip, qwt3d_io.sip, qwt3d_io_gl2ps.sip,
+	  qwt3d_io_reader.sip: Rename SIP identification features
+
+2004-11-16 19:58  gvermeul
+
+	* README: PyQwt3D works with numarray on SuSE-9.1.
+
+2004-11-16 08:11  gvermeul
+
+	* sip/features.sip, sip/qwt3d_io.sip, sip/qwt3d_io_gl2ps.sip,
+	  sip/qwt3d_io_reader.sip, configure/configure.py: Build fixes for
+	  SIP-4.0
+
+2004-11-15 07:31  gvermeul
+
+	* configure/configure.py: Fix typo.
+
+2004-11-14 13:03  gvermeul
+
+	* README: Complete README
+
+2004-11-14 11:47  gvermeul
+
+	* configure/configure.py: Fleshed out the Makefile options
+
+2004-11-14 08:07  gvermeul
+
+	* configure/.cvsignore: Ignore build directories
+
+2004-11-14 07:58  gvermeul
+
+	* .cvsignore, COPYING.PyQwt3D, MANIFEST.in, Makefile, PyQwt3D.spec,
+	  README, TODO, setup.cfg, setup.py, COPYING, sip/FILL,
+	  sip/qwt3d_gridmapping.sip, sip/qwt3d_io_reader.sip,
+	  sip/qwt3d_enrichment_std.sip, sip/qwt3d_surfaceplot.sip,
+	  sip/qwt3d_axis.sip, sip/qwt3d_coordsys.sip,
+	  sip/qwt3d_doublevector.sip, sip/qwt3d_drawable.sip,
+	  sip/qwt3d_freevectorfield.sip, sip/qwt3d_io.sip,
+	  sip/qwt3d_parametricsurface.sip, sip/qwt3dmod.sip,
+	  sip/copying.sip, sip/qwt3d_color.sip, sip/qwt3d_colorlegend.sip,
+	  sip/qwt3d_enrichment.sip, sip/qwt3d_mapping.sip,
+	  sip/qwt3d_openglhelper.sip, sip/qwt3d_triplefield.sip,
+	  sip/types.sip, sip/features.sip, sip/qwt3d_autoscaler.sip,
+	  sip/qwt3d_cell.sip, sip/qwt3d_colorvector.sip,
+	  sip/qwt3d_io_gl2ps.sip, sip/qwt3d_label.sip, sip/qwt3d_plot.sip,
+	  numpy/qwt3d_numarray.h, numpy/qwt3d_python.cpp,
+	  sip/STD_VECTOR_BASE, sip/STD_VECTOR_USER,
+	  sip/qwt3d_axisvector.sip, sip/qwt3d_cellfield.sip,
+	  sip/qwt3d_function.sip, sip/qwt3d_scale.sip, sip/qwt3d_types.sip,
+	  numpy/qwt3d_numarray.cpp, numpy/qwt3d_numeric.cpp,
+	  numpy/qwt3d_numeric.h, numpy/qwt3d_python.h,
+	  configure/configure.py, examples/AutoSwitch.py,
+	  examples/SimplePlot.py, examples/TestNumarray.py,
+	  examples/TestNumeric.py: Initial import.
+
+2004-11-14 07:58  gvermeul
+
+	* .cvsignore, COPYING.PyQwt3D, MANIFEST.in, Makefile, PyQwt3D.spec,
+	  README, TODO, setup.cfg, setup.py, COPYING, sip/FILL,
+	  sip/qwt3d_gridmapping.sip, sip/qwt3d_io_reader.sip,
+	  sip/qwt3d_enrichment_std.sip, sip/qwt3d_surfaceplot.sip,
+	  sip/qwt3d_axis.sip, sip/qwt3d_coordsys.sip,
+	  sip/qwt3d_doublevector.sip, sip/qwt3d_drawable.sip,
+	  sip/qwt3d_freevectorfield.sip, sip/qwt3d_io.sip,
+	  sip/qwt3d_parametricsurface.sip, sip/qwt3dmod.sip,
+	  sip/copying.sip, sip/qwt3d_color.sip, sip/qwt3d_colorlegend.sip,
+	  sip/qwt3d_enrichment.sip, sip/qwt3d_mapping.sip,
+	  sip/qwt3d_openglhelper.sip, sip/qwt3d_triplefield.sip,
+	  sip/types.sip, sip/features.sip, sip/qwt3d_autoscaler.sip,
+	  sip/qwt3d_cell.sip, sip/qwt3d_colorvector.sip,
+	  sip/qwt3d_io_gl2ps.sip, sip/qwt3d_label.sip, sip/qwt3d_plot.sip,
+	  numpy/qwt3d_numarray.h, numpy/qwt3d_python.cpp,
+	  sip/STD_VECTOR_BASE, sip/STD_VECTOR_USER,
+	  sip/qwt3d_axisvector.sip, sip/qwt3d_cellfield.sip,
+	  sip/qwt3d_function.sip, sip/qwt3d_scale.sip, sip/qwt3d_types.sip,
+	  numpy/qwt3d_numarray.cpp, numpy/qwt3d_numeric.cpp,
+	  numpy/qwt3d_numeric.h, numpy/qwt3d_python.h,
+	  configure/configure.py, examples/AutoSwitch.py,
+	  examples/SimplePlot.py, examples/TestNumarray.py,
+	  examples/TestNumeric.py: Initial revision
+

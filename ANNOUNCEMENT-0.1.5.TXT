@@ -1,0 +1,37 @@
+What is PyQwt3D ( http://pyqwt3d.sourceforge.net) ?
+
+- it is a set of Python bindings for the QwtPlot3D C++ class library
+  which extends the Qt framework with widgets for 3D data visualization.
+  PyQwt3D inherits the snappy feel from QwtPlot3D.
+  The examples at http://pyqwt.sourceforge.net/pyqwt3d-examples.html
+  show how easy it is to make a 3D plot and how to save a 3D plot to
+  an image or an (E)PS/PDF/PGF/SVG file.
+
+- it requires and extends PyQt, a set of Python bindings for Qt.
+
+- it supports the use of PyQt, Qt, QwtPlot3D, and NumPy or SciPy in a
+  GUI Python application or in an interactive Python session.
+
+- it runs on POSIX, Mac OS X and Windows platforms (practically any
+  platform supported by Qt and Python).
+
+The home page of PyQwt3D is http://pyqwt.sourceforge.net.
+
+New features and bugfixes in PyQwt3D-0.1.5:
+- Added support for QwtPlot3D-0.2.7
+- Added support for SIP-4.7, PyQt-4.3 and PyQt-3.17.3.
+- Added support for SVG and PGF vector output.
+- Added Qwt3D.save() to facilitate saving plots to a file.
+- Added Qwt3D.plot() to facilitate function plotting with nicely scaled axes.
+- Fixed the type of the result of IO.outputHandler(format).
+- Fixed saving to pixmap formats in qt4examples/Grab.py.
+
+PyQwt3D-0.1.5 supports:
+1. Python-2.5, or -2.4.
+2. PyQt-4.3, -4.2, -4.1, or -3.17.
+3. SIP-4.7, -4.6, or -4.5.
+4. Qt-4.3, -4.2, Qt-3.3, or -3.2.
+5. QwtPlot3D-0.2.7.
+
+
+Enjoy -- Gerard Vermeulen
