@@ -38,8 +38,15 @@ import pprint
 import re
 import shutil
 import sys
-import traceback
+#import traceback
 
+pyvers="%d.%d"%(sys.version_info.major,sys.version_info.minor)
+import PyQt5.QtCore
+qtconf = PyQt5.QtCore.PYQT_CONFIGURATION
+pyqt_mod_dir="/usr/lib/python%s/dist-packages/PyQt5/"%pyvers
+qt_inc_dir="/usr/include/x86_64-linux-gnu/qt5/"
+pyqt_sip_dir = "/usr/share/sip/PyQt5"
+#/usr/share/sip/PyQt4
 
 class Die(Exception):
     def __init__(self, info):
@@ -64,36 +71,19 @@ def get_pyqt_configuration(options):
     """Return the PyQt configuration for Qt3 or Qt4
     """
 
-    if options.qt == 3:
-        required = 'At least PyQt-3.17 and its development tools are required.'
-        options.qwt3d = 'Qwt3D_Qt3'
-        options.opengl = 'OpenGL_Qt3'
-        options.excluded_features.append("-x HAS_QT4 -x HAS_QT5")
-        try:
-            import pyqtconfig as pyqtconfig
-        except ImportError:
-            raise Die(required)
-        if 0x031100 > pyqtconfig._pkg_config['pyqt_version']:
-            raise Die(required)
-    elif options.qt == 4:
-        required = 'At least PyQt-4.1 and its development tools are required.'
-        options.qwt3d = 'Qwt3D_Qt4'
-        options.opengl = 'OpenGL_Qt4'
-        options.excluded_features.append("-x HAS_QT3 -x HAS_QT5")
-        try:
-            import PyQt4.pyqtconfig as pyqtconfig
-        except ImportError:
-            raise Die(required)
-        if 0x040100 > pyqtconfig._pkg_config['pyqt_version']:
-            raise Die(required)
+    if options.qt == 5:
+        required = 'At least PyQt-5 and its development tools are required.'
+        options.qwt3d = 'Qwt3D_Qt5'
+        options.opengl = 'OpenGL_Qt5'
+        options.excluded_features.append("-x HAS_QT3 -x HAS_QT4")
 
     options.subdirs.extend([options.qwt3d, options.opengl])
 
     try:
-        configuration = pyqtconfig.Configuration()
+        configuration = sipconfig.Configuration()
     except AttributeError:
         raise Die(
-            'Check if SIP and PyQt or PyQt4 have been installed properly.'
+            'Check if SIP and PyQt or PyQt5 have been installed properly.'
             )
 
     return configuration
@@ -116,8 +106,7 @@ def compile_qt_program(name, configuration,
     extra_lib_dirs is a list of extra directories to search for libraries
     extra_libs is a list of extra libraries
     """    
-    makefile = sipconfig.ProgramMakefile(
-        configuration, console=True, qt=True, warnings=True)
+    makefile = sipconfig.ProgramMakefile(configuration, console=True, qt=True, warnings=True)
     
     makefile.extra_defines.extend(extra_defines)
     makefile.extra_include_dirs.extend(extra_include_dirs)
@@ -191,74 +180,6 @@ def copy_files(sources, directory):
         shutil.copy2(source, os.path.join(directory, os.path.basename(source)))
 
 # copy_files()
-
-
-def check_numarray(configuration, options, package):
-    '''See if the numarray extension has been installed.
-    '''
-    if options.disable_numarray:
-        options.excluded_features.append("-x HAS_NUMARRAY")
-        return options
-
-    try:
-        import numarray
-
-        # Try to find numarray/arrayobject.h.
-        numarray_inc = os.path.join(
-            configuration.py_inc_dir, 'numarray', 'arrayobject.h')
-        if os.access(numarray_inc, os.F_OK):
-            print('Found numarray-%s.\n' % numarray.__version__)
-            options.extra_defines.append('HAS_NUMARRAY')
-        else:
-            print(('numarray has been installed, '
-                   'but its headers are not in the standard location.\n'
-                   '%s will be build without support for numarray.\n'
-                   '(Linux users may have to install a development package)\n'
-                   ) % (package,))
-            raise ImportError
-    except ImportError:
-        options.excluded_features.append('-x HAS_NUMARRAY')
-        print(('Failed to import numarray: '
-               '%s will be build without support for numarray.\n'
-               ) % (package,))
-
-    return options
-
-# check_numarray()
-
-
-def check_numeric(configuration, options, package):
-    """See if the Numeric extension has been installed.
-    """
-    if options.disable_numeric:
-        options.excluded_features.append('-x HAS_NUMERIC')
-        return options
-
-    try:
-        import Numeric
-
-        # Try to find Numeric/arrayobject.h.
-        numeric_inc = os.path.join(
-            configuration.py_inc_dir, 'Numeric', 'arrayobject.h')
-        if os.access(numeric_inc, os.F_OK):
-            print('Found Numeric-%s.\n' % Numeric.__version__)
-            options.extra_defines.append('HAS_NUMERIC')
-        else:
-            print(('Numeric has been installed, '
-                   'but its headers are not in the standard location.\n'
-                   '%s will be build without support for Numeric.\n'
-                   '(Linux users may have to install a development package)\n'
-                   ) % (package,))
-            raise ImportError
-    except ImportError:
-        options.excluded_features.append('-x HAS_NUMERIC')
-        print(('Failed to find Numeric: '
-               '%s will be build without support for Numeric.\n'
-               ) % (package,))
-
-    return options
-
-# check_numeric()
 
 
 def check_numpy(configuration, options, package):
@@ -451,18 +372,19 @@ def setup_opengl_build(configuration, options, package):
     except:
         raise Die('Failed to create the temporary build directory.')
 
-    if options.qt == 3:
-        pyqt_sip_flags = configuration.pyqt_qt_sip_flags
+    pyqt_sip_flags=""
+    if options.qt == 5:
+        pyqt_sip_flags =  qtconf['sip_flags']
+
         sipfile = os.path.join(
-            os.pardir, "sip", "OpenGL_Qt3_Module.sip")
-    elif options.qt == 4:
-        pyqt_sip_flags = configuration.pyqt_sip_flags
-        sipfile = os.path.join(
-            os.pardir, "sip", "OpenGL_Qt4_Module.sip")
+            os.pardir, "sip", "OpenGL_Qt5_Module.sip")
 
     # invoke SIP
+    print(qtconf['sip_flags'])
     cmd = ' '.join(
         [configuration.sip_bin,
+        "-I",pyqt_sip_dir,
+         pyqt_sip_flags,
          '-b', build_file,
          '-c', tmp_dir,
          options.jobs,
@@ -497,29 +419,37 @@ def setup_opengl_build(configuration, options, package):
     print('%s file(s) lazily copied.' % lazy_copies)
 
     # module makefile
-    if options.qt == 3:
-        makefile = sipconfig.ModuleMakefile(
-            configuration = configuration,
-            build_file = os.path.basename(build_file),
-            dir = build_dir,
-            install_dir = options.module_install_path,
-            #installs = installs,
-            qt = 1,
-            opengl = 1,
-            warnings = 1,
-            debug = options.debug,
-            )
-    elif options.qt == 4:
+    if options.qt == 5:
         # FIXME
         options.extra_include_dirs.append(
-            os.path.join(configuration.qt_inc_dir, 'Qt'))
-        makefile = sipconfig.ModuleMakefile(
+            os.path.join(qt_inc_dir, 'Qt'))
+        options.extra_include_dirs.append(
+            os.path.join(qt_inc_dir, 'QtCore'))
+        options.extra_include_dirs.append(
+            os.path.join(qt_inc_dir, 'QtGui'))
+        options.extra_include_dirs.append(
+            os.path.join(qt_inc_dir, 'QtWidgets'))
+        options.extra_include_dirs.append(
+            os.path.join(qt_inc_dir, 'QtOpenGL'))
+        options.extra_include_dirs.append(qt_inc_dir)
+        """makefile = sipconfig.ModuleMakefile(
             configuration = configuration,
             build_file = os.path.basename(build_file),
             dir = build_dir,
             install_dir = options.module_install_path,
             #installs = installs,
             qt = ['QtOpenGL'],
+            opengl = 1,
+            warnings = 1,
+            debug = options.debug,
+            )"""
+        makefile = sipconfig.SIPModuleMakefile(
+            configuration = configuration,
+            build_file = os.path.basename(build_file),
+            dir = build_dir,
+            install_dir = options.module_install_path,
+            #installs = installs,
+            #qt = ['QtOpenGL'],
             opengl = 1,
             warnings = 1,
             debug = options.debug,
@@ -542,7 +472,7 @@ def nsis():
     """
     try:
         from numpy.version import version as numpy_version
-        from PyQt4.Qt import PYQT_VERSION_STR, QT_VERSION_STR
+        from PyQt5.Qt import PYQT_VERSION_STR, QT_VERSION_STR
     except:
         return
 
@@ -566,27 +496,25 @@ def setup_qwt3d_build(configuration, options, package):
     build_dir = options.qwt3d
     tmp_dir = "tmp-%s" % options.qwt3d
     build_file = os.path.join(tmp_dir, "qwt3d.sbf")
-    sip_dir = os.path.join(configuration.pyqt_sip_dir, 'Qwt3D')
+    #sip_dir = os.path.join(configuration.pyqt_sip_dir, 'Qwt3D')
+    sip_dir = os.path.join(pyqt_sip_dir, 'Qwt3D')
     extra_sources = []
     extra_headers = []
     extra_moc_headers = []
-    if configuration.qt_version < 0x040000:
-        extra_py_files = glob.glob(
-            os.path.join(os.pardir, 'qt3lib', 'Qwt3D', '*.py'))
-    else:
-        extra_py_files = glob.glob(
-            os.path.join(os.pardir, 'qt4lib', 'PyQt4', 'Qwt3D', '*.py'))
+    extra_py_files = glob.glob( os.path.join(os.pardir, 'qt5lib', 'PyQt5', 'Qwt3D', '*.py'))
 
     # do we compile and link the sources of QwtPlot3D into PyQwt3D?
-
     if options.qwtplot3d_sources:
         # yes, zap all 'qwtplot3d'
         while options.extra_libs.count('qwtplot3d'):
             options.extra_libs.remove('qwtplot3d')
-    #elif ('qwtplot3d' not in options.extra_libs: Must be added manually. libqwtplot3d or libqwtplot3d-qt4 is ok
-    #   no, add 'qwtplot3d' if needed
-    #    options.extra_libs.append('qwtplot3d')
-
+    elif 'qwtplot3d' not in options.extra_libs:
+        # no, add 'qwtplot3d' if needed
+        options.extra_libs.append('qwtplot3d')
+    # This line is added by the Debian 
+    while options.extra_libs.count('qwtplot3d'):
+        options.extra_libs.remove('qwtplot3d')
+ 
     # do we also compile and link the sources of zlib into PyQwt3D?
     if options.zlib_sources:
         options.extra_defines.append('HAVE_ZLIB')
@@ -650,26 +578,23 @@ def setup_qwt3d_build(configuration, options, package):
             if -1 != text.find('../3rdparty/gl2ps/'): 
                 open(source, 'w').write(text.replace('../3rdparty/gl2ps/', ''))
 
-    if options.qt == 3:
-        pyqt_sip_flags = configuration.pyqt_qt_sip_flags
+    pyqt_sip_flags=""
+    if options.qt == 5:
+        pyqt_sip_flags = qtconf['sip_flags']
         sipfile = os.path.join(
-            os.pardir, "sip", "Qwt3D_Qt3_Module.sip")
-    elif options.qt == 4:
-        pyqt_sip_flags = configuration.pyqt_sip_flags
-        sipfile = os.path.join(
-            os.pardir, "sip", "Qwt3D_Qt4_Module.sip")
+            os.pardir, "sip", "Qwt3D_Qt5_Module.sip")
         
     # invoke SIP
     cmd = " ".join(
         [configuration.sip_bin,
          # SIP assumes POSIX style path separators
          #"-I", os.path.join(os.pardir, "sip").replace("\\", "/"),
-         "-I", configuration.pyqt_sip_dir.replace("\\", "/"),
-         "-b", build_file,
+         "-I", pyqt_sip_dir.replace("\\", "/"),
+        pyqt_sip_flags,
+          "-b", build_file,
          "-c", tmp_dir,
          options.jobs,
          options.trace,
-         pyqt_sip_flags,
          ]
         + options.sip_include_dirs
         + options.excluded_features
@@ -747,33 +672,32 @@ def setup_qwt3d_build(configuration, options, package):
                 os.path.join(directory, "*.sip"))], sip_dir])
 
     # module makefile
-    if options.qt == 3:
-        makefile = sipconfig.ModuleMakefile(
-            configuration = configuration,
-            build_file = os.path.basename(build_file),
-            dir = build_dir,
-            install_dir = options.module_install_path,
-            installs = installs,
-            qt = 1,
-            opengl = 1,
-            warnings = 1,
-            debug = options.debug,
-            )
-    elif options.qt == 4:
+    if options.qt == 5:
         # FIXME
         options.extra_include_dirs.append(
-            os.path.join(configuration.qt_inc_dir, 'Qt'))
-        makefile = sipconfig.ModuleMakefile(
+            os.path.join(qt_inc_dir, 'Qt'))
+        makefile = sipconfig.SIPModuleMakefile(
             configuration = configuration,
             build_file = os.path.basename(build_file),
             dir = build_dir,
             install_dir = options.module_install_path,
             installs = installs,
-            qt = ['QtCore', 'QtGui', 'QtOpenGL'],
+            #qt = ['QtCore', 'QtGui', 'QtOpenGL'],
             opengl = 1,
             warnings = 1,
             debug = options.debug,
             )
+        """        makefile = sipconfig.SIPModuleMakefile(
+        configuration = configuration,
+        build_file = os.path.basename(build_file),
+        dir = build_dir,
+        install_dir = options.module_install_path,
+        #installs = installs,
+        #qt = ['QtOpenGL'],
+        opengl = 1,
+        warnings = 1,
+        debug = options.debug,
+        )"""
 
     makefile.extra_cflags.extend(options.extra_cflags)
     makefile.extra_cxxflags.extend(options.extra_cxxflags)
@@ -783,9 +707,7 @@ def setup_qwt3d_build(configuration, options, package):
     makefile.extra_libs.extend(options.extra_libs)
     makefile.extra_lib_dirs.extend(options.extra_lib_dirs)
     makefile.generate()
-
-    if options.qt == 4:
-        nsis()
+    nsis()
 
 # setup_qwt3d_build()
 
@@ -795,8 +717,7 @@ def setup_parent_build(configuration, options):
     """
     print("Setup the PyQwt3D build.")
      
-    sipconfig.ParentMakefile(configuration = configuration,
-                             subdirs = options.subdirs).generate()
+    sipconfig.ParentMakefile(configuration = configuration, subdirs = options.subdirs).generate()
 
 # setup_parent_build()
 
@@ -817,12 +738,9 @@ def parse_args():
 
     common_options = optparse.OptionGroup(parser, 'Common options')
     common_options.add_option(
-        '-3', '--qt3', action='store_const', const=3, dest='qt',
-        help=('build for Qt3 and PyQt [default Qt4]'))
-    common_options.add_option(
-        '-4', '--qt4', action='store_const', const=4, dest='qt',
-        default=4,
-        help=('build for Qt4 and PyQt4 [default Qt4]'))
+        '-5', '--qt5', action='store_const', const=5, dest='qt',
+        default=5,
+        help=('build for Qt5 and PyQt5 [default Qt5]'))
     common_options.add_option(
         '-Q', '--qwtplot3d-sources', default='', action='store',
         type='string', metavar='/sources/of/qwtplot3d',
@@ -976,7 +894,6 @@ def main():
     
     # parse the command line
     options, args = parse_args()
-
     print("Command line options:")
     pprint.pprint(options.__dict__)
     print()
@@ -986,13 +903,11 @@ def main():
     # extend the options
     options = check_sip(configuration, options, 'PyQwt3D')
     options = check_os(configuration, options, 'PyQwt3D')
-    options = check_compiler(configuration, options, 'PyQwt3D')
-    options = check_numarray(configuration, options, 'PyQwt3D')
-    options = check_numeric(configuration, options, 'PyQwt3D')
+    #options = check_compiler(configuration, options, 'PyQwt3D')
     options = check_numpy(configuration, options, 'PyQwt3D')
     if not options.module_install_path:
         options.module_install_path = os.path.join(
-            configuration.pyqt_mod_dir, 'Qwt3D')
+            pyqt_mod_dir, 'Qwt3D')
 
     setup_opengl_build(configuration, options, 'PyQwt3D')
     setup_qwt3d_build(configuration, options, 'PyQwt3D')

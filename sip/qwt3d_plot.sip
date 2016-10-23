@@ -67,6 +67,9 @@ public:
 %If (HAS_QT4)
     Plot3D(QWidget * /TransferThis/ = 0, const QGLWidget * = 0);
 %End // (HAS_QT4) 
+%If (HAS_QT5)
+    Plot3D(QWidget * /TransferThis/ = 0, const QGLWidget * = 0);
+%End // (HAS_QT5) 
     virtual ~Plot3D();
 
     void updateData();

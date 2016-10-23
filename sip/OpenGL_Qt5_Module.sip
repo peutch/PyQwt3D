@@ -1,4 +1,4 @@
-// The SIP feature definitions for PyQwt3D.
+// The SIP interface definition for the OpenGL module of PyQwt3D.
 //
 // Copyright (C) 2004-2008 Gerard Vermeulen
 //
@@ -28,14 +28,9 @@
 // PyQwt3D becomes a free plug-in for a non-free program.
 
 
-%Feature HAS_QT3
-%Feature HAS_QT4
-%Feature HAS_QT5
+%Module PyQt4.Qwt3D.OpenGL 0
 
-// Numerical Python extensions
-%Feature HAS_NUMARRAY
-%Feature HAS_NUMERIC
-%Feature HAS_NUMPY
+%Include OpenGL_mod.sip
 
 
 // Local Variables:

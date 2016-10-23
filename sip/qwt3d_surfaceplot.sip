@@ -50,6 +50,9 @@ public:
 %If (HAS_QT4)
     SurfacePlot(QWidget * /TransferThis/ = 0, const QGLWidget * = 0);
 %End // (HAS_QT4)
+%If (HAS_QT5)
+    SurfacePlot(QWidget * /TransferThis/ = 0, const QGLWidget * = 0);
+%End // (HAS_QT5)
     ~SurfacePlot();
     void updateNormals();
     int resolution() const;

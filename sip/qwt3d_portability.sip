@@ -61,6 +61,31 @@ public:
 }; // class KeyboardState 
 %End // (HAS_QT4)
 
+%If (HAS_QT5)
+class MouseState
+{
+%TypeHeaderCode
+#include <qwt3d_portability.h>
+%End // %TypeHeaderCode
+
+public:
+    MouseState(Qt::MouseButtons = Qt::NoButton,
+               Qt::KeyboardModifiers = Qt::NoModifier);
+    bool operator==(const MouseState& ms);
+    bool operator!=(const MouseState& ms);
+}; // class MouseState
+
+
+class KeyboardState
+{
+public:
+    KeyboardState(int = Qt::Key_unknown,
+                  Qt::KeyboardModifiers = Qt::NoModifier);
+    bool operator==(const KeyboardState& ms);
+    bool operator!=(const KeyboardState& ms);
+}; // class KeyboardState 
+%End // (HAS_QT5)
+
 // Local Variables:
 // mode: C++
 // c-file-style: "stroustrup"
