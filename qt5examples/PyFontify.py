@@ -37,8 +37,8 @@ import string
 import re
 
 # First a little helper, since I don't like to repeat things. (Tismer speaking)
-def replace(where, what, with):
-    return with.join(where.split(what))
+def replace(where, what, withh):
+    return withh.join(where.split(what))
 
 # Build up a regular expression which will match anything
 # interesting, including multi-line triple-quoted strings.

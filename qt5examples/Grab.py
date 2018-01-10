@@ -2,14 +2,13 @@
 
 import inspect, sys
 # iqt is part of PyQwt
-import PyQt4.Qwt5.iqt
-from PyQt4.Qwt3D import Plot3D, save
+from PyQt5.Qwt3D import Plot3D, save
 
 get_input = input
 # If this is Python 2, use raw_input()
 if sys.version_info[:2] <= (2, 7):
     get_input = raw_input
-        
+
 def walk(p):
     if isinstance(p, Plot3D):
         yield p
