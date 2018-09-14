@@ -1,3 +1,8 @@
+2018-09-14 06:56  Gudjon
+
+	* Add ANNOUNCEMENT-0.1.8.TXT
+	* Updated to python3 and Qt5. Tested on Linux (Debian)
+
 2008-11-03 07:23  gvermeul
 
 	* qt4examples/EnrichmentDemo.py: Add scaffolding.
