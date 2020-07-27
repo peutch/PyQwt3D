@@ -2,7 +2,7 @@
 
 // Uncomment one of the following three lines
 // typedef unsigned int size_t;
-typedef unsigned long size_t;
+//typedef unsigned long size_t;
 // typedef unsigned long long size_t;
 
 // Local Variables:

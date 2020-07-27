@@ -28,7 +28,8 @@
 // PyQwt3D becomes a free plug-in for a non-free program.
 
 
-%Module PyQt5.Qwt3D._Qwt3D 0
+//%Module PyQt5.Qwt3D._Qwt3D 0
+%Module(name=PyQt5.Qwt3D, keyword_arguments="Optional")
 
 %Import QtCore/QtCoremod.sip
 %Import QtGui/QtGuimod.sip
