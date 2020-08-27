@@ -28,7 +28,7 @@
 // PyQwt3D becomes a free plug-in for a non-free program.
 
 
-%Module PyQt5.Qwt3D.OpenGL 0
+%Module(name=PyQt5.Qwt3D.OpenGL, keyword_arguments="Optional")
 
 %Include OpenGL_mod.sip
 
