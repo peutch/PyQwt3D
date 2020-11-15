@@ -95,7 +95,7 @@ class ModuleConfiguration(object):
     # The name (without the .api extension) of the name of the PyQwt3D API
     # file to be generated.  If it is None or an empty string then an API file
     # is not generated.
-    qscintilla_api_file = 'PyQwt3D'
+    pyqwt3d_api_file = 'PyQwt3D'
 
     # The email address that will be included when an error in the script is
     # detected.  Leave it blank if you don't want to include an address.
@@ -1092,7 +1092,7 @@ class _TargetConfiguration:
             elif self.stubs_dir == '':
                 self.stubs_dir = self.module_dir
 
-        if pkg_config.qscintilla_api_file:
+        if pkg_config.pyqwt3d_api_file:
             if opts.apidir is not None:
                 self.api_dir = opts.apidir
 
@@ -1184,7 +1184,7 @@ def _create_optparser(target_config, pkg_config):
                 help="disable the installation of the PEP 484 stubs "
                         "[default: enabled]")
 
-    if pkg_config.qscintilla_api_file:
+    if pkg_config.pyqwt3d_api_file:
         p.add_option('--apidir', '-a', dest='apidir', type='string',
                 default=None, action='callback',
                 callback=optparser_store_abspath, metavar="DIR", 
@@ -1341,7 +1341,7 @@ def _inform_user(target_config, pkg_config):
         inform("The PEP 484 stubs will be installed in %s." %
                 target_config.stubs_dir)
 
-    if pkg_config.qscintilla_api_file and target_config.api_dir != '':
+    if pkg_config.pyqwt3d_api_file and target_config.api_dir != '':
         inform("The PyQwt3D API file will be installed in %s." %
                 os.path.join(target_config.api_dir, 'api', 'python'))
 
@@ -1412,7 +1412,7 @@ def _generate_code(target_config, opts, pkg_config, module_config, all_installs)
         argv.append('-y')
         argv.append(quote(module_config.pep484_stub_file + '.pyi'))
 
-    if pkg_config.qscintilla_api_file and target_config.api_dir != '':
+    if pkg_config.pyqwt3d_api_file and target_config.api_dir != '':
         # Generate the API file.
         argv.append('-a')
         argv.append(quote(module_config.name + '.api'))
@@ -1902,9 +1902,9 @@ def _main(argv, pkg_config):
                 all_installs)
 
     # Concatenate any .api files.
-    if pkg_config.qscintilla_api_file and target_config.api_dir != '':
+    if pkg_config.pyqwt3d_api_file and target_config.api_dir != '':
         inform("Generating the PyQwt3D API file...")
-        f = open(pkg_config.qscintilla_api_file + '.api', 'w')
+        f = open(pkg_config.pyqwt3d_api_file + '.api', 'w')
 
         for module_config in pkg_config.modules:
             api = open(module_config.name + '.api')
@@ -1944,9 +1944,9 @@ INSTALLS += pep484_stubs
             all_installs.extend(
                     [target_config.stubs_dir + '/' + pyi for pyi in stubs])
 
-    if pkg_config.qscintilla_api_file and target_config.api_dir != '':
+    if pkg_config.pyqwt3d_api_file and target_config.api_dir != '':
         api_dir = target_config.api_dir + '/api/python'
-        api_file = pkg_config.qscintilla_api_file + '.api'
+        api_file = pkg_config.pyqwt3d_api_file + '.api'
 
         pro.write('''
 api.path = %s
@@ -2015,7 +2015,7 @@ if __name__ == '__main__':
         pkg_config_type.pyqt4_is_supported = mod_config_type.pyqt4_is_supported
         pkg_config_type.pyqt5_is_supported = mod_config_type.pyqt5_is_supported
         pkg_config_type.pyqt5_is_default = mod_config_type.pyqt5_is_default
-        pkg_config_type.qscintilla_api_file = mod_config_type.qscintilla_api_file
+        pkg_config_type.pyqwt3d_api_file = mod_config_type.pyqwt3d_api_file
         pkg_config_type.support_email_address = mod_config_type.support_email_address
         pkg_config_type.user_configuration_file_is_supported = mod_config_type.user_configuration_file_is_supported
         pkg_config_type.user_pyqt_sip_flags_is_supported = mod_config_type.user_pyqt_sip_flags_is_supported
