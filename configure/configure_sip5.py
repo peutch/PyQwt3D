@@ -135,55 +135,136 @@ class ModuleConfiguration(object):
         target_configuration is the target configuration.
         """
 
-        optparser.add_option('--qwt3d-incdir', '-n', dest='qwt3d_inc_dir',
+        common_options = optparse.OptionGroup(optparser, 'Common options')
+        common_options.add_option(
+            '-5', '--qt5', action='store_const', const=5, dest='qt',
+            default=5,
+            help=('build for Qt5 and PyQt5 [default Qt5]'))
+        common_options.add_option(
+            '-Q', '--qwtplot3d-sources', default='', action='store',
+            type='string', metavar='/sources/of/qwtplot3d',
+            help=('compile and link the QwtPlot3D source files in'
+                ' /sources/of/qwtplot3d statically into PyQwt3D'
+                ' (required on Windows)'))
+        common_options.add_option(
+            '-Z', '--zlib-sources', default='', action='store',
+            type='string', metavar='/sources/of/zlib',
+            help=('compile and link the QwtPlot3D source files in'
+                ' /sources/of/zlib statically into PyQwt3D'
+                ' (the -Z option is ignored without the -Q option)'))
+        common_options.add_option(
+            '-D', '--extra-defines', default=[], action='append',
+            type='string', metavar='HAVE_ZLIB',
+            help=('add an extra preprocessor definition (HAVE_ZLIB enables'
+                ' compression of EPS/PDF/PS/SVG output and HAVE_LIBPNG enables'
+                ' pixmaps in the SVG output, but both defines are ignored'
+                ' without the -Q option)'))
+        common_options.add_option(
+            '-I', '--extra-include-dirs', default=[], action='append',
+            type='string', metavar='/usr/include/qwtplot3d',
+            help=('add an extra directory to search for headers'
+                ' (the compiler must be able to find the QwtPlot3D headers'
+                ' without the -Q option)'))
+        common_options.add_option('--qwt3d-incdir', '-n', dest='qwt3d_inc_dir',
                 type='string', default=None, action='callback',
                 callback=optparser_store_abspath_dir, metavar="DIR",
-                help="the directory containing the Qwtplot3D header "
+                help="the directory containing the Qwt3D header "
                         "file directory is DIR [default: QT_INSTALL_HEADERS]")
-
-        """optparser.add_option('--qwt3d-featuresdir', dest='qwt3d_features_dir',
+        common_options.add_option(
+            '-L', '--extra-lib-dirs', default=[], dest='qwt3d_lib_dir', action='append',
+            type='string', metavar='/usr/lib/qt3/lib',
+            help=('add an extra directory to search for libraries'
+                ' (the linker must be able to find the QwtPlot3D library'
+                ' without the -Q option)'))
+        common_options.add_option('--qwt3d-libdir', '-o', dest='qwt3d_lib_dir',
                 type='string', default=None, action='callback',
                 callback=optparser_store_abspath_dir, metavar="DIR",
-                help="the directory containing the qwtplot3d.prf features "
-                        "file is DIR [default: "
-                        "QT_INSTALL_PREFIX/mkspecs/features]")"""
-
-        optparser.add_option('--qwt3d-libdir', '-o', dest='qwt3d_lib_dir',
-                type='string', default=None, action='callback',
-                callback=optparser_store_abspath_dir, metavar="DIR",
-                help="the directory containing the Qwtplot3D library is DIR "
+                help="the directory containing the Qwt3D library is DIR "
                         "[default: QT_INSTALL_LIBS]")
+        """common_options.add_option(
+            '-j', '--jobs', default=0, action='store',
+            type='int', metavar='N',
+            help=('concatenate the SIP generated code into N files'
+                ' [default 1 per class] (to speed up make by running '
+                ' simultaneous jobs on multiprocessor systems)'))"""
+        common_options.add_option(
+            '-l', '--extra-libs', default=[], action='append',
+            type='string', metavar='z',
+            help=('add an extra library (to link the zlib library, you must'
+                ' specify "zlib" or "zlib1" on Windows'
+                ' and "z" on POSIX and MacOS/X)'))
+        optparser.add_option_group(common_options)
 
+        make_options = optparse.OptionGroup(optparser, 'Make options')
+        """make_options.add_option(
+            '--debug', default=False, action='store_true',
+            help='enable debugging symbols [default disabled]')"""
+        make_options.add_option(
+            '--extra-cflags', default=[], action='append',
+            type='string', metavar='EXTRA_CFLAG',
+            help='add an extra C compiler flag')
+        make_options.add_option(
+            '--extra-cxxflags', default=[], action='append',
+            type='string', metavar='EXTRA_CXXFLAG',
+            help='add an extra C++ compiler flag')
+        make_options.add_option(
+            '--extra-lflags', default=[], action='append',
+            type='string', metavar='EXTRA_LFLAG',
+            help='add an extra linker flag')
+        optparser.add_option_group(make_options)
+
+        sip_options = optparse.OptionGroup(optparser, 'SIP options')
+        """sip_options.add_option(
+            '-x', '--excluded-features', default=[], action='append',
+            type='string', metavar='EXTRA_SENSORY_PERCEPTION',
+            help=('add a feature for SIP to exclude'
+                ' (normally one of the features in sip/features.sip)'))
+        sip_options.add_option(
+            '-t', '--timelines', default=[], action='append',
+            type='string', metavar='ESP_3_2_1',
+            help=('add a timeline for SIP to adapt to a library version'
+                ' (normally one of the timeline options in sip/timelines.sip)'))
+        sip_options.add_option(
+            '--sip-include-dirs', default=[os.path.join(os.pardir, 'sip')],
+            action='append', type='string', metavar='SIP_INCLUDE_DIR',
+            help='add an extra directory for SIP to search')
+        sip_options.add_option(
+            '--trace', default=False, action='store_true',
+            help=('enable trace of the execution of the bindings'
+                ' [default disabled]'))"""
         optparser.add_option('--qwt3d-sipdir', '-v', dest='qwt3d_sip_dir',
                 type='string', default=None, action='callback',
                 callback=optparser_store_abspath_dir, metavar="DIR",
-                help="the PyQwt3D .sip files will be installed in DIR "
+                help="the Qwt .sip files will be installed in DIR "
                         "[default: %s]" % target_configuration.pyqt_sip_dir)
 
         optparser.add_option("--no-sip-files", action="store_true",
                 default=False, dest="qwt3d_no_sip_files",
                 help="disable the installation of the .sip files "
                         "[default: enabled]")
+        optparser.add_option_group(sip_options)
+        
+        detection_options = optparse.OptionGroup(optparser, 'Detection options')
+        detection_options.add_option(
+            '--disable-numarray', default=False, action='store_true',
+            help='disable detection and use of numarray [default enabled]')
+        detection_options.add_option(
+            '--disable-numeric', default=False, action='store_true',
+            help='disable detection and use of Numeric [default enabled]')
+        detection_options.add_option(
+            '--disable-numpy',
+            default=False,
+            action='store_true',
+            help='disable detection and use of NumPy [default enabled]'
+            )
+        optparser.add_option_group(detection_options)
 
-### Options from old configure script ####
-        optparser.add_option('--zlib-sources','-Z', action='store',
-            type='string',  default='', metavar='/sources/of/zlib',
-            help=('compile and link the QwtPlot3D source files in'
-                  ' /sources/of/zlib statically into PyQwt3D'
-                  ' (the -Z option is ignored without the -Q option)'))
-        optparser.add_option( '--extra-defines', '-D',action='append',
-            type='string', default=[], metavar='HAVE_ZLIB',
-            help=('add an extra preprocessor definition (HAVE_ZLIB enables'
-                  ' compression of EPS/PDF/PS/SVG output and HAVE_LIBPNG enables'
-                  ' pixmaps in the SVG output, but both defines are ignored'
-                  ' without the -Q option)'))
-        optparser.add_option(
-        '-l', '--extra-libs', default=[], action='append',
-        type='string', metavar='z',
-        help=('add an extra library (to link the zlib library, you must'
-              ' specify "zlib" or "zlib1" on Windows'
-              ' and "z" on POSIX and MacOS/X)'))
-### End of options from old configure script ####
+        install_options = optparse.OptionGroup(optparser, 'Install options')
+        install_options.add_option(
+            '--module-install-path', default='', action='store',
+            help= 'specify the install directory for the Python modules'
+            )
+        optparser.add_option_group(install_options)
 
     @staticmethod
     def apply_options(target_configuration, options):
@@ -769,6 +850,7 @@ class _TargetConfiguration:
         self.pyqt_package = pyqt
 
         pkg_config.init_target_configuration(self)
+        #pass
 
     def update_from_configuration_file(self, config_file):
         """ Update the configuration with values from a file.  config_file
